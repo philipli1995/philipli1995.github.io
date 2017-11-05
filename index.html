@@ -188,7 +188,7 @@
 <p>​    运行时常量池是方法区的一部分，且Java虚拟机规范没有具体要求。当常量池无法申请到足够内存会抛出OutOfMemoryError。</p>
 <h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>​    直接内存不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。在JDK1.4中加入了NIO（New Input/Output）类，引入了基于通道和缓冲区的IO方式，可以通过Native函数库直接分配对外内存，然后通过存储在Java堆中的DirectByteBuffer对象作为该内存的引用，以避免Java堆和Native堆互相复制数据，提高性能。</p>
 <p>​    本机直接内存分配不会受到Java堆大小的限制，只受到本机总内存（RAM和SWAP）大小和处理器寻址空间的限制。</p>
-<p><img src="/Users/philipli/Desktop/屏幕快照 2017-11-05 下午2.55.02.png" alt="屏幕快照 2017-11-05 下午2.55.02"></p>
+<p><img src="/Users/philipli/Documents/hexo/blog/public/img/image.png" alt="屏幕快照 2017-11-05 下午2.55.02"></p>
 
       
 
