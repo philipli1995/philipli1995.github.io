@@ -155,6 +155,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM笔记-1-内存区域划分与管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">JVM笔记(1)--内存区域划分与管理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/30/JVM笔记-1-内存区域划分与管理/" class="archive-article-date">
+  	<time datetime="2017-10-31T05:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。</p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>​    占有一块较小的内存空间，当前线程执行的字节码行号指示器。每一个线程拥有一个独立的程序计数器，各个线程之间的计数器互不影响，属于“线程私有”内存区域。</p>
+<p>​    如果线程执行的是Java方法，指向虚拟机字节码指令地址。如果执行Native方法，则计数器值为空（Undefined）。</p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>​    Java虚拟机栈也是线程私有的，生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型，每个方法拥有一个独立的栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息，每一个方法从调用直至完成的过程，对应一个栈帧从虚拟机栈中入栈到出栈的过程。</p>
+<p>​    局部变量表中有基本数据类（boolean, byte, char, short, int, float, long, double）以及对象引用（reference类型，指向一个对象或代表对象的句柄）和returnAddress类型（指向一个字节码指令的地址）</p>
+<p>​    64位长度的long和double类型数据占用2个局部变量空间，其余的数据类型只占用1个。局部变量表所需内存空间在编译时完成分配，方法运行期间不会改变局部变量表的大小。</p>
+<p>​    如果线程请求栈的深度大于虚拟机所允许的深度，将抛出StackOverflowError异常，如果扩展时无法申请到足够内存，将抛出OutOfMemoryError。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>​    虚拟机栈为虚拟机执行Java方法， 本地方法栈为虚拟机使用的Native方法服务。虚拟机规范中对本地方法栈的使用语言、使用方式和数据结构并没有强制规定，有的虚拟机（Sun HotSpot虚拟机）甚至直接把本地方法栈和虚拟机栈合二为一。</p>
+<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><p>​    Java堆是Java虚拟机管理内存中最大的一块，内存区域被所有线程共享，作用是存放对象实例和数组。Java堆也是垃圾回收的主要区域，从内存回收角度来看，现在的内存回收基本采用分代收集算法，Java堆可以细分为新生代和老年代，也可以细分为Eden空间、From Survivor空间、To Survivork空间等。从内存分配角度，Java堆可以分为多个线程私有的分配缓冲区（TLAB）。根据Java虚拟机规范规定，Java堆可以处于物理上不连续的内存空间中。</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>​    方法区和Java堆一样是线程共享的，用于存储被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等。在HotSpot虚拟机上方法区属于永久代，现在逐步放弃永久代改用Native Memory的方法。</p>
+<p>​    运行时常量池是方法区的一部分，且Java虚拟机规范没有具体要求。当常量池无法申请到足够内存会抛出OutOfMemoryError。</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>​    直接内存不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。在JDK1.4中加入了NIO（New Input/Output）类，引入了基于通道和缓冲区的IO方式，可以通过Native函数库直接分配对外内存，然后通过存储在Java堆中的DirectByteBuffer对象作为该内存的引用，以避免Java堆和Native堆互相复制数据，提高性能。</p>
+<p>​    本机直接内存分配不会受到Java堆大小的限制，只受到本机总内存（RAM和SWAP）大小和处理器寻址空间的限制。</p>
+<p><img src="/Users/philipli/Desktop/屏幕快照 2017-11-05 下午2.55.02.png" alt="屏幕快照 2017-11-05 下午2.55.02"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode每周竞赛系列-No-56" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
