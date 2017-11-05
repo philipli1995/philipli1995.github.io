@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Tech Blog</title>
+  <title>Archives: 2017/11 | Tech Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Tech Blog">
-<meta property="og:url" content="http://www.philipli-blog.com/index.html">
+<meta property="og:url" content="http://www.philipli-blog.com/archives/2017/11/index.html">
 <meta property="og:site_name" content="Tech Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tech Blog">
@@ -155,425 +155,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode每周竞赛系列-No-57" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">Leetcode每周竞赛系列-No-57</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" class="archive-article-date">
   	<time datetime="2017-11-05T23:15:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第57届每周算法竞赛。</p>
-<h4 id="P2-Accounts-Merge"><a href="#P2-Accounts-Merge" class="headerlink" title="P2 Accounts Merge"></a>P2 <a href="https://leetcode.com/contest/leetcode-weekly-contest-57/problems/accounts-merge/" target="_blank" rel="external">Accounts Merge</a></h4><p>Given a list <code>accounts</code>, each element <code>accounts[i]</code> is a list of strings, where the first element <code>accounts[i][0]</code> is a <em>name</em>, and the rest of the elements are <em>emails</em> representing emails of the account.</p>
-<p>Now, we would like to merge these accounts. Two accounts definitely belong to the same person if there is some email that is common to both accounts. Note that even if two accounts have the same name, they may belong to different people as people could have the same name. A person can have any number of accounts initially, but all of their accounts definitely have the same name.</p>
-<p>After merging the accounts, return the accounts in the following format: the first element of each account is the name, and the rest of the elements are emails <strong>in sorted order</strong>. The accounts themselves can be returned in any order.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">accounts = [[&quot;John&quot;, &quot;johnsmith@mail.com&quot;, &quot;john00@mail.com&quot;], [&quot;John&quot;, &quot;johnnybravo@mail.com&quot;], [&quot;John&quot;, &quot;johnsmith@mail.com&quot;, &quot;john_newyork@mail.com&quot;], [&quot;Mary&quot;, &quot;mary@mail.com&quot;]]</div><div class="line">Output: [[&quot;John&quot;, &apos;john00@mail.com&apos;, &apos;john_newyork@mail.com&apos;, &apos;johnsmith@mail.com&apos;],  [&quot;John&quot;, &quot;johnnybravo@mail.com&quot;], [&quot;Mary&quot;, &quot;mary@mail.com&quot;]]</div><div class="line">Explanation: </div><div class="line">The first and third John&apos;s are the same person as they have the common email &quot;johnsmith@mail.com&quot;.</div><div class="line">The second John and Mary are different people as none of their email addresses are used by other accounts.</div><div class="line">We could return these lists in any order, for example the answer [[&apos;Mary&apos;, &apos;mary@mail.com&apos;], [&apos;John&apos;, &apos;johnnybravo@mail.com&apos;], </div><div class="line">[&apos;John&apos;, &apos;john00@mail.com&apos;, &apos;john_newyork@mail.com&apos;, &apos;johnsmith@mail.com&apos;]] would still be accepted.</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The length of <code>accounts</code> will be in the range <code>[1, 1000]</code>.</li>
-<li>The length of <code>accounts[i]</code> will be in the range <code>[1, 10]</code>.</li>
-<li>The length of <code>accounts[i][j]</code> will be in the range <code>[1, 30]</code>.</li>
-</ul>
-<p>解答：类似图论中的group()方法，需要注意每一次归并的时候，已经整理的账户可能不止一个，需要把所有具有相同邮箱的账户都进行归并。然后返回的所有邮箱地址是需要按字母排序的，需要比较细致的考虑实现。</p>
-<h4 id="P3-Remove-Comments"><a href="#P3-Remove-Comments" class="headerlink" title="P3 Remove Comments"></a>P3 <a href="https://leetcode.com/contest/leetcode-weekly-contest-57/problems/remove-comments/" target="_blank" rel="external">Remove Comments</a></h4><p>Given a C++ program, remove comments from it. The program <code>source</code> is an array where <code>source[i]</code> is the <code>i</code>-th line of the source code. This represents the result of splitting the original source code string by the newline character <code>\n</code>.</p>
-<p>In C++, there are two types of comments, line comments, and block comments.</p>
-<p>The string <code>//</code> denotes a line comment, which represents that it and rest of the characters to the right of it in the same line should be ignored.</p>
-<p>The string <code>/*</code> denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of <code>*/</code> should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string <code>/*/</code> does not yet end the block comment, as the ending would be overlapping the beginning.</p>
-<p>The first effective comment takes precedence over others: if the string <code>//</code> occurs in a block comment, it is ignored. Similarly, if the string <code>/*</code> occurs in a line or block comment, it is also ignored.</p>
-<p>If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.</p>
-<p>There will be no control characters, single quote, or double quote characters. For example, <code>source = &quot;string s = &quot;/* Not a comment. */&quot;;&quot;</code> will not be a test case. (Also, nothing else such as defines or macros will interfere with the comments.)</p>
-<p>It is guaranteed that every open block comment will eventually be closed, so <code>/*</code> outside of a line or block comment always starts a new comment.</p>
-<p>Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.</p>
-<p>After removing the comments from the source code, return the source code in the same format.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">source = [&quot;/*Test program */&quot;, &quot;int main()&quot;, &quot;&#123; &quot;, &quot;  // variable declaration &quot;, &quot;int a, b, c;&quot;, &quot;/* This is a test&quot;, &quot;   multiline  &quot;, &quot;   comment for &quot;, &quot;   testing */&quot;, &quot;a = b + c;&quot;, &quot;&#125;&quot;]</div><div class="line"></div><div class="line">The line by line code is visualized as below:</div><div class="line">/*Test program */</div><div class="line">int main()</div><div class="line">&#123; </div><div class="line">  // variable declaration </div><div class="line">int a, b, c;</div><div class="line">/* This is a test</div><div class="line">   multiline  </div><div class="line">   comment for </div><div class="line">   testing */</div><div class="line">a = b + c;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Output: [&quot;int main()&quot;,&quot;&#123; &quot;,&quot;  &quot;,&quot;int a, b, c;&quot;,&quot;a = b + c;&quot;,&quot;&#125;&quot;]</div><div class="line"></div><div class="line">The line by line code is visualized as below:</div><div class="line">int main()</div><div class="line">&#123; </div><div class="line">  </div><div class="line">int a, b, c;</div><div class="line">a = b + c;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Explanation: </div><div class="line">The string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.</div></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">source = [&quot;a/*comment&quot;, &quot;line&quot;, &quot;more_comment*/b&quot;]</div><div class="line">Output: [&quot;ab&quot;]</div><div class="line">Explanation: The original source string is &quot;a/*comment\nline\nmore_comment*/b&quot;, where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string &quot;ab&quot;, which when delimited by newline characters becomes [&quot;ab&quot;].</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The length of <code>source</code> is in the range <code>[1, 100]</code>.</li>
-<li>The length of <code>source[i]</code> is in the range <code>[0, 80]</code>.</li>
-<li>Every open block comment is eventually closed.</li>
-<li>There are no single-quote, double-quote, or control characters in the source code.</li>
-</ul>
-<p>解答：实际上就是写一个删去注释的方法，如果用常规解法会比较繁琐，推荐一个Stefan大神的一行正则表达式的解法（跪。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeComments</span><span class="params">(self, source)</span>:</span></div><div class="line">    <span class="keyword">return</span> filter(<span class="keyword">None</span>, re.sub(<span class="string">'//.*|/\*(.|\n)*?\*/'</span>, <span class="string">''</span>, <span class="string">'\n'</span>.join(source)).split(<span class="string">'\n'</span>))</div></pre></td></tr></table></figure>
-<p>####P4 <a href="https://leetcode.com/contest/leetcode-weekly-contest-57/problems/candy-crush/" target="_blank" rel="external">Candy Crush</a> </p>
-<p>This question is about implementing a basic elimination algorithm for Candy Crush.</p>
-<p>Given a 2D integer array <code>board</code> representing the grid of candy, different positive integers <code>board[i][j]</code> represent different types of candies. A value of <code>board[i][j] = 0</code> represents that the cell at position <code>(i, j)</code> is empty. The given board represents the state of the game following the player’s move. Now, you need to restore the board to a <em>stable state</em> by crushing candies according to the following rules:</p>
-<ol>
-<li>If three or more candies of the same type are adjacent vertically or horizontally, “crush” them all at the same time - these positions become empty.</li>
-<li>After crushing all candies simultaneously, if an empty space on the board has candies on top of itself, then these candies will drop until they hit a candy or bottom at the same time. (No new candies will drop outside the top boundary.)</li>
-<li>After the above steps, there may exist more candies that can be crushed. If so, you need to repeat the above steps.</li>
-<li>If there does not exist more candies that can be crushed (ie. the board is <em>stable</em>), then return the current board.</li>
-</ol>
-<p>You need to perform the above rules until the board becomes stable, then return the current board.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">board = </div><div class="line">[[110,5,112,113,114],[210,211,5,213,214],[310,311,3,313,314],[410,411,412,5,414],[5,1,512,3,3],[610,4,1,613,614],[710,1,2,713,714],[810,1,2,1,1],[1,1,2,2,2],[4,1,4,4,1014]]</div><div class="line">Output:</div><div class="line">[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[110,0,0,0,114],[210,0,0,0,214],[310,0,0,113,314],[410,0,0,213,414],[610,211,112,313,614],[710,311,412,613,714],[810,411,512,713,1014]]</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The length of <code>board</code> will be in the range [3, 50].</li>
-<li>The length of <code>board[i]</code> will be in the range [3, 50].</li>
-<li>Each <code>board[i][j]</code> will initially start as an integer in the range [1, 2000].</li>
-</ol>
-<p>解法：实际上就是写一个消砖块的程序，实现起来不难。准备一个状态数组负责记录砖块是否可以消除，把整个程序放在外循环里即可。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM笔记-1-内存区域划分与管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">JVM笔记(1)--内存区域划分与管理</a>
+      <a class="archive-article-title" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">Leetcode每周竞赛系列-No-57</a>
     </h1>
   
 
-        
-        <a href="/2017/10/30/JVM笔记-1-内存区域划分与管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T05:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。</p>
-<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>​    占有一块较小的内存空间，当前线程执行的字节码行号指示器。每一个线程拥有一个独立的程序计数器，各个线程之间的计数器互不影响，属于“线程私有”内存区域。</p>
-<p>​    如果线程执行的是Java方法，指向虚拟机字节码指令地址。如果执行Native方法，则计数器值为空（Undefined）。</p>
-<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>​    Java虚拟机栈也是线程私有的，生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型，每个方法拥有一个独立的栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息，每一个方法从调用直至完成的过程，对应一个栈帧从虚拟机栈中入栈到出栈的过程。</p>
-<p>​    局部变量表中有基本数据类（boolean, byte, char, short, int, float, long, double）以及对象引用（reference类型，指向一个对象或代表对象的句柄）和returnAddress类型（指向一个字节码指令的地址）</p>
-<p>​    64位长度的long和double类型数据占用2个局部变量空间，其余的数据类型只占用1个。局部变量表所需内存空间在编译时完成分配，方法运行期间不会改变局部变量表的大小。</p>
-<p>​    如果线程请求栈的深度大于虚拟机所允许的深度，将抛出StackOverflowError异常，如果扩展时无法申请到足够内存，将抛出OutOfMemoryError。</p>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>​    虚拟机栈为虚拟机执行Java方法， 本地方法栈为虚拟机使用的Native方法服务。虚拟机规范中对本地方法栈的使用语言、使用方式和数据结构并没有强制规定，有的虚拟机（Sun HotSpot虚拟机）甚至直接把本地方法栈和虚拟机栈合二为一。</p>
-<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><p>​    Java堆是Java虚拟机管理内存中最大的一块，内存区域被所有线程共享，作用是存放对象实例和数组。Java堆也是垃圾回收的主要区域，从内存回收角度来看，现在的内存回收基本采用分代收集算法，Java堆可以细分为新生代和老年代，也可以细分为Eden空间、From Survivor空间、To Survivork空间等。从内存分配角度，Java堆可以分为多个线程私有的分配缓冲区（TLAB）。根据Java虚拟机规范规定，Java堆可以处于物理上不连续的内存空间中。</p>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>​    方法区和Java堆一样是线程共享的，用于存储被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等。在HotSpot虚拟机上方法区属于永久代，现在逐步放弃永久代改用Native Memory的方法。</p>
-<p>​    运行时常量池是方法区的一部分，且Java虚拟机规范没有具体要求。当常量池无法申请到足够内存会抛出OutOfMemoryError。</p>
-<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>​    直接内存不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。在JDK1.4中加入了NIO（New Input/Output）类，引入了基于通道和缓冲区的IO方式，可以通过Native函数库直接分配对外内存，然后通过存储在Java堆中的DirectByteBuffer对象作为该内存的引用，以避免Java堆和Native堆互相复制数据，提高性能。</p>
-<p>​    本机直接内存分配不会受到Java堆大小的限制，只受到本机总内存（RAM和SWAP）大小和处理器寻址空间的限制。</p>
-<p><img src="/Users/philipli/Documents/hexo/blog/public/img/image.png" alt="屏幕快照 2017-11-05 下午2.55.02"></p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-Leetcode每周竞赛系列-No-56" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/28/Leetcode每周竞赛系列-No-56/">Leetcode每周算法竞赛系列-No.56</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/28/Leetcode每周竞赛系列-No-56/" class="archive-article-date">
-  	<time datetime="2017-10-29T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第56届每周算法竞赛。</p>
-<h4 id="P3-Maximum-Length-of-Repeated-Subarray"><a href="#P3-Maximum-Length-of-Repeated-Subarray" class="headerlink" title="P3 Maximum Length of Repeated Subarray"></a>P3 <a href="https://leetcode.com/contest/leetcode-weekly-contest-56/problems/maximum-length-of-repeated-subarray" target="_blank" rel="external">Maximum Length of Repeated Subarray</a></h4><p>Given two integer arrays <code>A</code> and <code>B</code>, return the maximum length of an subarray that appears in both arrays.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">A: [1,2,3,2,1]</div><div class="line">B: [3,2,1,4,7]</div><div class="line">Output: 3</div><div class="line">Explanation: </div><div class="line">The repeated subarray with maximum length is [3, 2, 1].</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li>1 &lt;= len(A), len(B) &lt;= 1000</li>
-<li>0 &lt;= A[i], B[i] &lt; 100</li>
-</ol>
-<p>解答：属于动态规划类常见题目，难度中等，但是选择方法不当很容易TLE。设dp[i]’[j] 为A数组前i个数和B数组前j个数的结果，dp[A.length]’[B.length]即为最终结果。</p>
-<p>参考代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLength</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = A.length, m = B.length;</div><div class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>][m+<span class="number">1</span>];</div><div class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)&#123;</div><div class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; m;j++)&#123;</div><div class="line">        		<span class="keyword">if</span>(A[i] == B[j])&#123;</div><div class="line">        			dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</div><div class="line">        		&#125;<span class="keyword">else</span>&#123;</div><div class="line">        			dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">        		&#125;</div><div class="line">        		ret = Math.max(ret, dp[i+<span class="number">1</span>][j+<span class="number">1</span>]);</div><div class="line">        	&#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="P4-Find-K-th-Smallest-Pair-Distance"><a href="#P4-Find-K-th-Smallest-Pair-Distance" class="headerlink" title="P4 Find K-th Smallest Pair Distance"></a>P4 <a href="https://leetcode.com/contest/leetcode-weekly-contest-56/problems/find-k-th-smallest-pair-distance" target="_blank" rel="external">Find K-th Smallest Pair Distance</a></h4><p>Given an integer array, return the k-th smallest <strong>distance</strong> among all the pairs. The distance of a pair (A, B) is defined as the absolute difference between A and B.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">nums = [1,3,1]</div><div class="line">k = 1</div><div class="line">Output: 0 </div><div class="line">Explanation:</div><div class="line">Here are all the pairs:</div><div class="line">(1,3) -&gt; 2</div><div class="line">(1,1) -&gt; 0</div><div class="line">(3,1) -&gt; 2</div><div class="line">Then the 1st smallest distance pair is (1,1), and its distance is 0.</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong></p>
-<ol>
-<li><code>2 &lt;= len(nums) &lt;= 10000</code>.</li>
-<li><code>0 &lt;= nums[i] &lt; 1000000</code>.</li>
-<li><code>1 &lt;= k &lt;= len(nums) * (len(nums) - 1) / 2</code>.</li>
-</ol>
-<p>解答：实际上是考察二分法，需要对算法实际运行次数有所掌握，不是对所有距离进行排序而是将所有点排序然后对各个点的距离进行二分搜索，以此来减少实际的时间复杂度。</p>
-<p>参考代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// Returns number of pairs with absolute difference less than or equal to mid.</span></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPairs</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> mid)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = a.length, res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</div><div class="line">            <span class="keyword">int</span> j = i;</div><div class="line">            <span class="keyword">while</span> (j &lt; n &amp;&amp; a[j] - a[i] &lt;= mid) j++;</div><div class="line">            res += j - i - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">smallestDistancePair</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = a.length;</div><div class="line">        Arrays.sort(a);</div><div class="line"></div><div class="line">        <span class="comment">// Minimum absolute difference</span></div><div class="line">        <span class="keyword">int</span> low = a[<span class="number">1</span>] - a[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</div><div class="line">            low = Math.min(low, a[i + <span class="number">1</span>] - a[i]);</div><div class="line"></div><div class="line">        <span class="comment">// Maximum absolute difference</span></div><div class="line">        <span class="keyword">int</span> high = a[n - <span class="number">1</span>] - a[<span class="number">0</span>];</div><div class="line"></div><div class="line">        <span class="comment">// Do binary search for k-th absolute difference</span></div><div class="line">        <span class="keyword">while</span> (low &lt; high) &#123;</div><div class="line">            <span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span> (countPairs(a, mid) &lt; k)</div><div class="line">                low = mid + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                high = mid;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> low;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/28/Leetcode每周竞赛系列-No-56/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/24/first-blog/">Another post</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/24/first-blog/" class="archive-article-date">
-  	<time datetime="2017-10-24T17:12:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Another-Test-Post"><a href="#Another-Test-Post" class="headerlink" title="Another Test Post"></a>Another Test Post</h2><p>For test only.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">newTag</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/24/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/23/hello-world/">我的第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-24T02:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Test-Post"><a href="#Test-Post" class="headerlink" title="Test Post"></a>Test Post</h1><p>Here is my first post for <a href="http://philipli-blog.com" target="_blank" rel="external"><strong>my new blog</strong></a>.</p>
-<p>It starts!</p>
-<p>Fight on!</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/23/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -595,9 +217,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
