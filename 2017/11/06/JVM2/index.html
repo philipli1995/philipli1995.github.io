@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Archives | Blog</title>
+  <title>JVM笔记-2-内存区域划分与管理 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://www.philipli-blog.com/archives/index.html">
+  <meta name="description" content="​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。 ​    然后虚拟机对对象进行必要的设置：确定对象的类属性，确定对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM笔记-2-内存区域划分与管理">
+<meta property="og:url" content="http://www.philipli-blog.com/2017/11/06/JVM2/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:description" content="​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。 ​    然后虚拟机对对象进行必要的设置：确定对象的类属性，确定对">
+<meta property="og:updated_time" content="2017-11-06T20:14:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
+<meta name="twitter:title" content="JVM笔记-2-内存区域划分与管理">
+<meta name="twitter:description" content="​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。 ​    然后虚拟机对对象进行必要的设置：确定对象的类属性，确定对">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -153,160 +157,188 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JVM2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/GC/" class="archive-article-date">
-  	<time datetime="2017-11-06T20:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/GC/">JVM笔记-3-垃圾回收</a>
+    <h1 class="article-title" itemprop="name">
+      JVM笔记-2-内存区域划分与管理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/JVM2/" class="archive-article-date">
+        
+        <a href="/2017/11/06/JVM2/" class="archive-article-date">
   	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。</p>
+<p>​    然后虚拟机对对象进行必要的设置：确定对象的类属性，确定对象的类元数据信息，对象的哈希码，对象的GC分代年龄等。这些信息放在对象头。</p>
+<p>​    最后执行对象的init方法。</p>
+<p>​    对象在内存存储中分为三块区域： 对象头、实例数据、对齐填充。</p>
+<p>​    对象头部又分为：对象自身运行的数据，如哈希码、GC分代年龄、锁状态标志、线程锁、偏向线程ID、偏向时间戳等。类型指针，即对象指向元类型的指针，如果对象是一个数组，对象头中还存储数组长度。</p>
+<p>​    实例数据是对象存储真正有效的信息。这部分的存储顺序会受到虚拟机分配策略的影响。HotSpot默认分配策略为long/double、int、shot/char、byte、boolean、oop，在满足这个前提的条件下，父类变量优先子类变量。</p>
+<p>​    对齐填充主要起占位符的作用，负责将每个对象的大小控制在8字节的整数倍。</p>
+<p>对象访问方式主要分为使用句柄和直接指针两种：</p>
+<p>使用句柄：</p>
+<p>Java堆会划分出一块内存作为句柄池，由Java栈的reference变量指向句柄地址，再由句柄指向Java堆中变量的实例对象和方法区中对象的类型数据。</p>
+<p>直接指针：</p>
+<p>由Java栈的reference变量直接指向实例对象地址，在实例对象头部中存储类型数据信息。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/06/JVM2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" class="archive-article-date">
-  	<time datetime="2017-11-05T23:15:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/11/06/GC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JVM笔记-3-垃圾回收
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode每周竞赛系列-No-57</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">Leetcode每周竞赛系列-No-57</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/JVM笔记-1-内存区域划分与管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T05:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">JVM笔记(1)--内存区域划分与管理</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/28/Leetcode每周竞赛系列-No-56/" class="archive-article-date">
-  	<time datetime="2017-10-29T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/28/Leetcode每周竞赛系列-No-56/">Leetcode每周算法竞赛系列-No.56</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -330,8 +362,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

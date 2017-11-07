@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Archives | Blog</title>
+  <title>JVM笔记-3-垃圾回收 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://www.philipli-blog.com/archives/index.html">
+  <meta name="description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM笔记-3-垃圾回收">
+<meta property="og:url" content="http://www.philipli-blog.com/2017/11/06/GC/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
+<meta property="og:updated_time" content="2017-11-06T21:54:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
+<meta name="twitter:title" content="JVM笔记-3-垃圾回收">
+<meta name="twitter:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -153,160 +157,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-GC" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      JVM笔记-3-垃圾回收
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/GC/" class="archive-article-date">
+
+        
+        <a href="/2017/11/06/GC/" class="archive-article-date">
   	<time datetime="2017-11-06T20:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/GC/">JVM笔记-3-垃圾回收</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="判断对象回收"><a href="#判断对象回收" class="headerlink" title="判断对象回收"></a>判断对象回收</h5><p>计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。</p>
+<p>可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。</p>
+<p>如果对象没有与GC root相连接的引用链，首先会判断对象是否需要执行finalize()方法，如果对象没有覆盖finalize()或finalize()方法已经被虚拟机执行过，就直接回收。否则执行finalize()方法，如果在finalize()方法中对象重新取得引用链，就被移除“即将回收”集合，否则对象就被回收。</p>
+<h5 id="方法区回收"><a href="#方法区回收" class="headerlink" title="方法区回收"></a>方法区回收</h5><p>方法区（永久代）的回收主要有两部分：废弃常量和无用的类</p>
+<p>废弃常量：当前系统没有变量使用该值，则需要被回收。</p>
+<p>无用的类：</p>
+<p>1、该类的所有实例都已经被回收。</p>
+<p>2、加载该类的ClassLoader已经被回收。</p>
+<p>3、该类对应的静态类对象java.lang.Class没有在任何地方被引用，也没有任何地方通过反射访问。</p>
+<h5 id="新生代回收"><a href="#新生代回收" class="headerlink" title="新生代回收"></a>新生代回收</h5><p>新生代采用标记-清除算法，将内存分为一块较大的Eden空间和两块较小的Survivor空间，大小比例为8：1，每次使用Eden空间和其中一块Survivor空间，当回收时，将存活对象复制到另一块Suvivor空间，来解决内存碎片的问题。当Suvivor空间不足时，多余对象通过分配担保机制进入老年代。</p>
+<h5 id="老年代回收"><a href="#老年代回收" class="headerlink" title="老年代回收"></a>老年代回收</h5><p>和新生代的标记-清除方法类似，在标记之后让所有存活的对象向一端移动，然后直接清除掉边界以外的内存。成为标记-整理算法。</p>
+<h5 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h5><p>当前的虚拟机垃圾收集一般采用分代收集算法，根据对象存活周期的不同，一般将内存划分为新生代和老年代。在新生代中对象存活周期短，就采用复制算法，老年代存活周期长，就采用标记-清理算法。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/06/GC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/JVM2/" class="archive-article-date">
-  	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/06/JVM2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM笔记-2-内存区域划分与管理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#判断对象回收"><span class="toc-number">1.</span> <span class="toc-text">判断对象回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#方法区回收"><span class="toc-number">2.</span> <span class="toc-text">方法区回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#新生代回收"><span class="toc-number">3.</span> <span class="toc-text">新生代回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#老年代回收"><span class="toc-number">4.</span> <span class="toc-text">老年代回收</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#分代收集算法"><span class="toc-number">5.</span> <span class="toc-text">分代收集算法</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" class="archive-article-date">
-  	<time datetime="2017-11-05T23:15:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">Leetcode每周竞赛系列-No-57</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/JVM笔记-1-内存区域划分与管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T05:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">JVM笔记(1)--内存区域划分与管理</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/28/Leetcode每周竞赛系列-No-56/" class="archive-article-date">
-  	<time datetime="2017-10-29T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/28/Leetcode每周竞赛系列-No-56/">Leetcode每周算法竞赛系列-No.56</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -330,8 +353,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

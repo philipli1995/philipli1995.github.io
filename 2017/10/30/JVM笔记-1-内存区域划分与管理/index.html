@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>JVM笔记(1)--内存区域划分与管理 | Tech Blog</title>
+  <title>JVM笔记(1)--内存区域划分与管理 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。 程序计数器​    占有一块较小的内存空间，当前线程执行的字节码行号指示器。每一个线程拥有一个独立的程序计数器，各个线程之间的计数器互不影响，属于“线程私有”内存区域。 ​    如果线程执">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM笔记(1)--内存区域划分与管理">
 <meta property="og:url" content="http://www.philipli-blog.com/2017/10/30/JVM笔记-1-内存区域划分与管理/index.html">
-<meta property="og:site_name" content="Tech Blog">
+<meta property="og:site_name" content="Blog">
 <meta property="og:description" content="​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。 程序计数器​    占有一块较小的内存空间，当前线程执行的字节码行号指示器。每一个线程拥有一个独立的程序计数器，各个线程之间的计数器互不影响，属于“线程私有”内存区域。 ​    如果线程执">
 <meta property="og:image" content="http://www.philipli-blog.com/Users/philipli/Documents/hexo/blog/public/img/image.png">
 <meta property="og:updated_time" content="2017-11-05T23:03:34.000Z">
@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。 程序计数器​    占有一块较小的内存空间，当前线程执行的字节码行号指示器。每一个线程拥有一个独立的程序计数器，各个线程之间的计数器互不影响，属于“线程私有”内存区域。 ​    如果线程执">
 <meta name="twitter:image" content="http://www.philipli-blog.com/Users/philipli/Documents/hexo/blog/public/img/image.png">
   
-    <link rel="alternative" href="/atom.xml" title="Tech Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -316,6 +316,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序计数器"><span class="toc-number">1.</span> <span class="toc-text">程序计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java虚拟机栈"><span class="toc-number">2.</span> <span class="toc-text">Java虚拟机栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地方法栈"><span class="toc-number">3.</span> <span class="toc-text">本地方法栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java堆"><span class="toc-number">4.</span> <span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法区"><span class="toc-number">5.</span> <span class="toc-text">方法区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接内存"><span class="toc-number">6.</span> <span class="toc-text">直接内存</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>

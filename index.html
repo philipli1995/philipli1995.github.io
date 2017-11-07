@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Tech Blog</title>
+  <title>Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Tech Blog">
+<meta property="og:title" content="Blog">
 <meta property="og:url" content="http://www.philipli-blog.com/index.html">
-<meta property="og:site_name" content="Tech Blog">
+<meta property="og:site_name" content="Blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tech Blog">
+<meta name="twitter:title" content="Blog">
   
-    <link rel="alternative" href="/atom.xml" title="Tech Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -154,6 +154,154 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-GC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/GC/">JVM笔记-3-垃圾回收</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/06/GC/" class="archive-article-date">
+  	<time datetime="2017-11-06T20:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="判断对象回收"><a href="#判断对象回收" class="headerlink" title="判断对象回收"></a>判断对象回收</h5><p>计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。</p>
+<p>可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。</p>
+<p>如果对象没有与GC root相连接的引用链，首先会判断对象是否需要执行finalize()方法，如果对象没有覆盖finalize()或finalize()方法已经被虚拟机执行过，就直接回收。否则执行finalize()方法，如果在finalize()方法中对象重新取得引用链，就被移除“即将回收”集合，否则对象就被回收。</p>
+<h5 id="方法区回收"><a href="#方法区回收" class="headerlink" title="方法区回收"></a>方法区回收</h5><p>方法区（永久代）的回收主要有两部分：废弃常量和无用的类</p>
+<p>废弃常量：当前系统没有变量使用该值，则需要被回收。</p>
+<p>无用的类：</p>
+<p>1、该类的所有实例都已经被回收。</p>
+<p>2、加载该类的ClassLoader已经被回收。</p>
+<p>3、该类对应的静态类对象java.lang.Class没有在任何地方被引用，也没有任何地方通过反射访问。</p>
+<h5 id="新生代回收"><a href="#新生代回收" class="headerlink" title="新生代回收"></a>新生代回收</h5><p>新生代采用标记-清除算法，将内存分为一块较大的Eden空间和两块较小的Survivor空间，大小比例为8：1，每次使用Eden空间和其中一块Survivor空间，当回收时，将存活对象复制到另一块Suvivor空间，来解决内存碎片的问题。当Suvivor空间不足时，多余对象通过分配担保机制进入老年代。</p>
+<h5 id="老年代回收"><a href="#老年代回收" class="headerlink" title="老年代回收"></a>老年代回收</h5><p>和新生代的标记-清除方法类似，在标记之后让所有存活的对象向一端移动，然后直接清除掉边界以外的内存。成为标记-整理算法。</p>
+<h5 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h5><p>当前的虚拟机垃圾收集一般采用分代收集算法，根据对象存活周期的不同，一般将内存划分为新生代和老年代。在新生代中对象存活周期短，就采用复制算法，老年代存活周期长，就采用标记-清理算法。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/06/GC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JVM2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/06/JVM2/" class="archive-article-date">
+  	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。</p>
+<p>​    然后虚拟机对对象进行必要的设置：确定对象的类属性，确定对象的类元数据信息，对象的哈希码，对象的GC分代年龄等。这些信息放在对象头。</p>
+<p>​    最后执行对象的init方法。</p>
+<p>​    对象在内存存储中分为三块区域： 对象头、实例数据、对齐填充。</p>
+<p>​    对象头部又分为：对象自身运行的数据，如哈希码、GC分代年龄、锁状态标志、线程锁、偏向线程ID、偏向时间戳等。类型指针，即对象指向元类型的指针，如果对象是一个数组，对象头中还存储数组长度。</p>
+<p>​    实例数据是对象存储真正有效的信息。这部分的存储顺序会受到虚拟机分配策略的影响。HotSpot默认分配策略为long/double、int、shot/char、byte、boolean、oop，在满足这个前提的条件下，父类变量优先子类变量。</p>
+<p>​    对齐填充主要起占位符的作用，负责将每个对象的大小控制在8字节的整数倍。</p>
+<p>对象访问方式主要分为使用句柄和直接指针两种：</p>
+<p>使用句柄：</p>
+<p>Java堆会划分出一块内存作为句柄池，由Java栈的reference变量指向句柄地址，再由句柄指向Java堆中变量的实例对象和方法区中对象的类型数据。</p>
+<p>直接指针：</p>
+<p>由Java栈的reference变量直接指向实例对象地址，在实例对象头部中存储类型数据信息。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/06/JVM2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Leetcode每周竞赛系列-No-57" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -434,145 +582,10 @@
 
 
   
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/24/first-blog/">Another post</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/24/first-blog/" class="archive-article-date">
-  	<time datetime="2017-10-24T17:12:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Another-Test-Post"><a href="#Another-Test-Post" class="headerlink" title="Another Test Post"></a>Another Test Post</h2><p>For test only.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">newTag</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/24/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/23/hello-world/">我的第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/23/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-24T02:08:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Test-Post"><a href="#Test-Post" class="headerlink" title="Test Post"></a>Test Post</h1><p>Here is my first post for <a href="http://philipli-blog.com" target="_blank" rel="external"><strong>my new blog</strong></a>.</p>
-<p>It starts!</p>
-<p>Fight on!</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/23/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
