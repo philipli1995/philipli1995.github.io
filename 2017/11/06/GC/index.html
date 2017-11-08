@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
   <title>JVM笔记-3-垃圾回收 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
+  <meta name="description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM笔记-3-垃圾回收">
 <meta property="og:url" content="http://www.philipli-blog.com/2017/11/06/GC/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
-<meta property="og:updated_time" content="2017-11-06T21:54:34.000Z">
+<meta property="og:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。">
+<meta property="og:updated_time" content="2017-11-08T03:41:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM笔记-3-垃圾回收">
-<meta name="twitter:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。 如果对象没有与GC root相连接的引用链，首先会判断对象">
+<meta name="twitter:description" content="判断对象回收计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。 可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -178,7 +178,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h5 id="判断对象回收"><a href="#判断对象回收" class="headerlink" title="判断对象回收"></a>判断对象回收</h5><p>计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。</p>
-<p>可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native
+<p>可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。<br><a id="more"></a></p>
+<p>如果对象没有与GC root相连接的引用链，首先会判断对象是否需要执行finalize()方法，如果对象没有覆盖finalize()或finalize()方法已经被虚拟机执行过，就直接回收。否则执行finalize()方法，如果在finalize()方法中对象重新取得引用链，就被移除“即将回收”集合，否则对象就被回收。</p>
+<h5 id="方法区回收"><a href="#方法区回收" class="headerlink" title="方法区回收"></a>方法区回收</h5><p>方法区（永久代）的回收主要有两部分：废弃常量和无用的类</p>
+<p>废弃常量：当前系统没有变量使用该值，则需要被回收。</p>
+<p>无用的类：</p>
+<p>1、该类的所有实例都已经被回收。</p>
+<p>2、加载该类的ClassLoader已经被回收。</p>
+<p>3、该类对应的静态类对象java.lang.Class没有在任何地方被引用，也没有任何地方通过反射访问。</p>
+<h5 id="新生代回收"><a href="#新生代回收" class="headerlink" title="新生代回收"></a>新生代回收</h5><p>新生代采用标记-清除算法，将内存分为一块较大的Eden空间和两块较小的Survivor空间，大小比例为8：1，每次使用Eden空间和其中一块Survivor空间，当回收时，将存活对象复制到另一块Suvivor空间，来解决内存碎片的问题。当Suvivor空间不足时，多余对象通过分配担保机制进入老年代。</p>
+<h5 id="老年代回收"><a href="#老年代回收" class="headerlink" title="老年代回收"></a>老年代回收</h5><p>和新生代的标记-清除方法类似，在标记之后让所有存活的对象向一端移动，然后直接清除掉边界以外的内存。成为标记-整理算法。</p>
+<h5 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h5><p>当前的虚拟机垃圾收集一般采用分代收集算法，根据对象存活周期的不同，一般将内存划分为新生代和老年代。在新生代中对象存活周期短，就采用复制算法，老年代存活周期长，就采用标记-清理算法。</p>
+
       
 
       
