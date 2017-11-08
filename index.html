@@ -178,8 +178,6 @@
         <h5 id="判断对象回收"><a href="#判断对象回收" class="headerlink" title="判断对象回收"></a>判断对象回收</h5><p>计数算法：给对象添加一个引用计数器，每当有一个地方引用就将值+1。无法解决两个垃圾变量互相引用的情况。</p>
 <p>可达性分析算法：通过一系列“GC root” 作为起始点，从这些点开始向下搜索，最后将没有搜索到的对象作为垃圾回收。可作为GC root的对象：虚拟机栈中的对象、方法区中静态对象、方法区中常量、本地Native方法中的对象。<br>
         
-          <a class="article-more-a" href="/2017/11/06/GC/#more">more >></a>
-        
       
 
       
@@ -242,8 +240,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。</p>
-        
-          <a class="article-more-a" href="/2017/11/06/JVM2/#more">more >></a>
         
       
 
@@ -308,8 +304,6 @@
       
         <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第57届每周算法竞赛。<br>
         
-          <a class="article-more-a" href="/2017/11/05/Leetcode每周竞赛系列-No-57/#more">more >></a>
-        
       
 
       
@@ -373,8 +367,6 @@
       
         <p>​    JVM虚拟机通常将管理内存划分为：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区等若干部分。其中方法区和Java堆由所有线程共享，Java虚拟机栈、本地方法栈和程序计数器属于线程隔离。<br>
         
-          <a class="article-more-a" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/#more">more >></a>
-        
       
 
       
@@ -437,8 +429,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第56届每周算法竞赛。<br>
-        
-          <a class="article-more-a" href="/2017/10/28/Leetcode每周竞赛系列-No-56/#more">more >></a>
         
       
 
