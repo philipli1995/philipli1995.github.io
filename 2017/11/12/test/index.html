@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Archives: 2017 | Blog</title>
+  <title>Leetcode每周竞赛系列-No-58 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://www.philipli-blog.com/archives/2017/index.html">
+  <meta name="description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第58届每周算法竞赛。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode每周竞赛系列-No-58">
+<meta property="og:url" content="http://www.philipli-blog.com/2017/11/12/test/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第58届每周算法竞赛。">
+<meta property="og:updated_time" content="2017-11-13T05:41:45.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
+<meta name="twitter:title" content="Leetcode每周竞赛系列-No-58">
+<meta name="twitter:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第58届每周算法竞赛。">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -153,160 +157,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Leetcode每周竞赛系列-No-58
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/12/test/" class="archive-article-date">
+
+        
+        <a href="/2017/11/12/test/" class="archive-article-date">
   	<time datetime="2017-11-13T05:30:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/12/test/">Leetcode每周竞赛系列-No-58</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第58届每周算法竞赛。<br><a id="more"></a></p>
+<h4 id="P3-Number-of-Atoms"><a href="#P3-Number-of-Atoms" class="headerlink" title="P3 Number of Atoms"></a>P3 <a href="https://leetcode.com/contest/weekly-contest-58/problems/number-of-atoms" target="_blank" rel="external">Number of Atoms</a></h4><p>Given a chemical <code>formula</code> (given as a string), return the count of each atom.</p>
+<p>An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.</p>
+<p>1 or more digits representing the count of that element may follow if the count is greater than 1. If the count is 1, no digits will follow. For example, H2O and H2O2 are possible, but H1O2 is impossible.</p>
+<p>Two formulas concatenated together produce another formula. For example, H2O2He3Mg4 is also a formula.</p>
+<p>A formula placed in parentheses, and a count (optionally added) is also a formula. For example, (H2O2) and (H2O2)3 are formulas.</p>
+<p>Given a formula, output the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its count (if that count is more than 1), and so on.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">formula = &quot;H2O&quot;</div><div class="line">Output: &quot;H2O&quot;</div><div class="line">Explanation: </div><div class="line">The count of elements are &#123;&apos;H&apos;: 2, &apos;O&apos;: 1&#125;.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">formula = &quot;Mg(OH)2&quot;</div><div class="line">Output: &quot;H2MgO2&quot;</div><div class="line">Explanation: </div><div class="line">The count of elements are &#123;&apos;H&apos;: 2, &apos;Mg&apos;: 1, &apos;O&apos;: 2&#125;.</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">formula = &quot;K4(ON(SO3)2)2&quot;</div><div class="line">Output: &quot;K4N2O14S4&quot;</div><div class="line">Explanation: </div><div class="line">The count of elements are &#123;&apos;K&apos;: 4, &apos;N&apos;: 2, &apos;O&apos;: 14, &apos;S&apos;: 4&#125;.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All atom names consist of lowercase letters, except for the first character which is uppercase.</li>
+<li>The length of <code>formula</code> will be in the range <code>[1, 1000]</code>.</li>
+<li><code>formula</code> will only consist of letters, digits, and round parentheses, and is a valid formula as defined in the problem.</li>
+</ul>
+<p>解答：考察字符串的处理，可以使用正则表达式简化代码，重点是是把括号内部的递归函数写好，与算法相比更像是体力活。</p>
+<p>参考代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countOfAtoms</span><span class="params">(String formula)</span> </span>&#123;</div><div class="line">        Map&lt;String, Integer&gt; map = countHelper(formula);</div><div class="line"></div><div class="line">        List&lt;String&gt; atoms = <span class="keyword">new</span> ArrayList&lt;&gt;(map.keySet());</div><div class="line">        Collections.sort(atoms);</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">for</span> (String atom : atoms) &#123;</div><div class="line">            sb.append(atom + (map.get(atom) &gt; <span class="number">1</span> ? map.get(atom) : <span class="string">""</span>));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> sb.toString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> Map&lt;String, Integer&gt; <span class="title">countHelper</span><span class="params">(String formula)</span> </span>&#123;</div><div class="line">        Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">if</span> (formula.isEmpty()) <span class="keyword">return</span> map;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; formula.length()) &#123;</div><div class="line">            <span class="keyword">if</span> (formula.charAt(i) == <span class="string">'('</span>) &#123;</div><div class="line">                <span class="keyword">int</span> count = <span class="number">0</span>, j = i;</div><div class="line">                <span class="keyword">for</span> (; j &lt; formula.length(); j++) &#123;</div><div class="line">                    <span class="keyword">if</span> (formula.charAt(j) == <span class="string">'('</span>) count++;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (formula.charAt(j) == <span class="string">')'</span>) count--;</div><div class="line">                    <span class="keyword">if</span> (count == <span class="number">0</span>) <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                Map&lt;String, Integer&gt; subMap = countHelper(formula.substring(i + <span class="number">1</span>, j));</div><div class="line"></div><div class="line">                j++;</div><div class="line">                <span class="keyword">int</span> n = <span class="number">1</span>, k = j;</div><div class="line">                <span class="keyword">while</span> (k &lt; formula.length() &amp;&amp; Character.isDigit(formula.charAt(k))) k++;</div><div class="line">                <span class="keyword">if</span> (k &gt; j) &#123;</div><div class="line">                    n = Integer.parseInt(formula.substring(j, k));</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">for</span> (String atom : subMap.keySet()) &#123;</div><div class="line">                    map.put(atom, subMap.get(atom) * n + map.getOrDefault(atom, <span class="number">0</span>));</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                i = k;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">int</span> j = i + <span class="number">1</span>;</div><div class="line">                <span class="keyword">while</span> (j &lt; formula.length() &amp;&amp; formula.charAt(j) &gt;= <span class="string">'a'</span> &amp;&amp; formula.charAt(j) &lt;= <span class="string">'z'</span>) j++;</div><div class="line"></div><div class="line">                <span class="keyword">int</span> n = <span class="number">1</span>, k = j;</div><div class="line">                <span class="keyword">while</span> (k &lt; formula.length() &amp;&amp; Character.isDigit(formula.charAt(k))) k++;</div><div class="line">                <span class="keyword">if</span> (k &gt; j) &#123;</div><div class="line">                    n = Integer.parseInt(formula.substring(j, k));</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                String atom = formula.substring(i, j);</div><div class="line">                map.put(atom, n + map.getOrDefault(atom, <span class="number">0</span>));</div><div class="line"></div><div class="line">                i = k;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> map;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="P4-Minimum-Window-Subsequence"><a href="#P4-Minimum-Window-Subsequence" class="headerlink" title="P4 Minimum Window Subsequence"></a>P4 <a href="https://leetcode.com/contest/weekly-contest-58/problems/minimum-window-subsequence" target="_blank" rel="external">Minimum Window Subsequence</a></h4><p>Given strings <code>S</code> and <code>T</code>, find the minimum (contiguous) <strong>substring</strong> <code>W</code> of <code>S</code>, so that <code>T</code> is a <strong>subsequence</strong> of <code>W</code>.</p>
+<p>If there is no such window in <code>S</code> that covers all characters in <code>T</code>, return the empty string <code>&quot;&quot;</code>. If there are multiple such minimum-length windows, return the one with the left-most starting index.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">S = &quot;abcdebdde&quot;, T = &quot;bde&quot;</div><div class="line">Output: &quot;bcde&quot;</div><div class="line">Explanation: </div><div class="line">&quot;bcde&quot; is the answer because it occurs before &quot;bdde&quot; which has the same length.</div><div class="line">&quot;deb&quot; is not a smaller window because the elements of T in the window must occur in order.</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All the strings in the input will only contain lowercase letters.</li>
+<li>The length of <code>S</code> will be in the range <code>[1, 20000]</code>.</li>
+<li>The length of <code>T</code> will be in the range <code>[1, 100]</code>.</li>
+</ul>
+<p>解答：LCS （匹配最长子字符串）问题的变形，需要通过LCS得到的状态数组找到最短字符串匹配。</p>
+<p>参考代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String S, String T)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[S.length()+<span class="number">1</span>][T.length()+<span class="number">1</span>];</div><div class="line">        String s = <span class="string">""</span>;</div><div class="line">        <span class="keyword">boolean</span> b = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; T.length(); j++) &#123;</div><div class="line">                <span class="keyword">if</span> (S.charAt(i) == T.charAt(j)) &#123;</div><div class="line">                    dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</div><div class="line">                    <span class="keyword">if</span> (dp[i+<span class="number">1</span>][j+<span class="number">1</span>] == T.length()) &#123;</div><div class="line">                        <span class="keyword">int</span> m = i, n = T.length() - <span class="number">1</span>;</div><div class="line">                        <span class="keyword">while</span> (n &gt;= <span class="number">0</span>) &#123;</div><div class="line">                            <span class="keyword">if</span> (S.charAt(m) == T.charAt(n)) &#123;</div><div class="line">                                m--;</div><div class="line">                                n--;</div><div class="line">                            &#125;</div><div class="line">                            <span class="keyword">else</span> &#123;</div><div class="line">                                m--;</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">if</span> (!b || s.length() &gt; S.substring(m+<span class="number">1</span>,i+<span class="number">1</span>).length()) &#123;</div><div class="line">                            s = S.substring(m+<span class="number">1</span>,i+<span class="number">1</span>);</div><div class="line">                            b = <span class="keyword">true</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> &#123;</div><div class="line">                    dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = Math.max(dp[i+<span class="number">1</span>][j],dp[i][j+<span class="number">1</span>]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/12/test/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/GC/" class="archive-article-date">
-  	<time datetime="2017-11-06T20:34:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/06/GC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM笔记-3-垃圾回收</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/GC/">JVM笔记-3-垃圾回收</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#P3-Number-of-Atoms"><span class="toc-number">1.</span> <span class="toc-text">P3 Number of Atoms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#P4-Minimum-Window-Subsequence"><span class="toc-number">2.</span> <span class="toc-text">P4 Minimum Window Subsequence</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/06/JVM2/" class="archive-article-date">
-  	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/05/Leetcode每周竞赛系列-No-57/" class="archive-article-date">
-  	<time datetime="2017-11-05T23:15:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/05/Leetcode每周竞赛系列-No-57/">Leetcode每周竞赛系列-No-57</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/JVM笔记-1-内存区域划分与管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T05:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/30/JVM笔记-1-内存区域划分与管理/">JVM笔记(1)--内存区域划分与管理</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -330,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
