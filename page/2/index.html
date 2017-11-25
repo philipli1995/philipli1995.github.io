@@ -155,6 +155,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/06/JVM2/" class="archive-article-date">
+  	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/06/JVM2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode每周竞赛系列-No-57" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

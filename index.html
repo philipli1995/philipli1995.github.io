@@ -155,6 +155,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Rxjava2-tutorial2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/24/Rxjava2-tutorial2/">Rxjava2 使用教程（2）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/24/Rxjava2-tutorial2/" class="archive-article-date">
+  	<time datetime="2017-11-25T05:49:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="三、背压-backpressure"><a href="#三、背压-backpressure" class="headerlink" title="三、背压(backpressure)"></a>三、背压(backpressure)</h4><p>背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？</p>
+<p>由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前一步工序和后一步工序完成工作的速度。由于后一步工序需要前一步工序的产品作为输入，如果前一步工序完成的过程很慢，那不会产生问题，后一步工序只要等待即可；但是如果前一步工序完成很快，远远快于后一步工序的处理速度，后一步工序就会处理不过来。而Rxjava采用的是并行运算，所以背压相当于考虑了不用线程流量控制的问题。所谓“背”，就是通过后一步工序控制前一步工序的工作速度，保证每一步工序能够稳定运行。</p>
+<h4 id="四、热启动和冷启动（Hot-Cold-Observable"><a href="#四、热启动和冷启动（Hot-Cold-Observable" class="headerlink" title="四、热启动和冷启动（Hot/Cold Observable)"></a>四、热启动和冷启动（Hot/Cold Observable)</h4><p>冷启动（cold Observable）是指工序的完成不需要额外时间，可以以任何速率、在任何时刻提供数据，例如网络请求、数据库查询、提取文件等。</p>
+<p>热启动（hot Observable）是指在它创建瞬间就开始工作的工序，并且以自己的速率释放数据，订阅它的下一步工序只能从它的中间时刻开始观察，捕捉到它释放的数据。例如鼠标键盘触发事件、系统事件等。</p>
+<p>冷启动的Observable是比较理想的能够通过reactive pull实现背压的例子，而热启动的Observable需要其他背压模型进行流量控制。</p>
+<h4 id="五、流量控制模型"><a href="#五、流量控制模型" class="headerlink" title="五、流量控制模型"></a>五、流量控制模型</h4><ul>
+<li>onBackpressureBuffer()：将上一步产生的数据缓存，在一下步需要的时候一次取出</li>
+<li>onBackpressureDrop()：取出源Observable释放的最近的数据提供给某一时刻请求数据的Observable</li>
+<li>onBackpressureBlock()：取出的数据顺序和onBackpressureBuffer()相同，但是对上一步Observable有额外控制：除非下一步的Observable请求数据，否则将源Observable释放的数据屏蔽。请求数据将上一个Observable解除屏蔽，然后在上一个Observable释放第一个数据之后再次屏蔽数据。</li>
+</ul>
+<p>参考：<a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure" target="_blank" rel="external">Rxjava wiki homepage</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/24/Rxjava2-tutorial2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode-60" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -391,69 +475,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/06/GC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/06/JVM2/">JVM笔记-2-内存区域划分与管理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/06/JVM2/" class="archive-article-date">
-  	<time datetime="2017-11-06T17:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    Java虚拟机遇到一条new指令时，首先将检查这个指令的参数是否在常量池中找到对应引用，并对相应引用进行类的加载。在类加载后，虚拟机将为新生对象分配内存，对象内存大小在类加载完成后可以完全确认。多线程分配内存有两种解决方案，一种是加锁（CAS失败重试）保证原子性，另一种是为每一个线程预备一个本地线程分配缓冲（TLAB）。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/06/JVM2/">展开全文 >></a>
         </p>
       
 
