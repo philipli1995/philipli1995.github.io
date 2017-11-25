@@ -176,17 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="三、背压-backpressure"><a href="#三、背压-backpressure" class="headerlink" title="三、背压(backpressure)"></a>三、背压(backpressure)</h4><p>背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？</p>
-<p>由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前一步工序和后一步工序完成工作的速度。由于后一步工序需要前一步工序的产品作为输入，如果前一步工序完成的过程很慢，那不会产生问题，后一步工序只要等待即可；但是如果前一步工序完成很快，远远快于后一步工序的处理速度，后一步工序就会处理不过来。而Rxjava采用的是并行运算，所以背压相当于考虑了不用线程流量控制的问题。所谓“背”，就是通过后一步工序控制前一步工序的工作速度，保证每一步工序能够稳定运行。</p>
-<h4 id="四、热启动和冷启动（Hot-Cold-Observable"><a href="#四、热启动和冷启动（Hot-Cold-Observable" class="headerlink" title="四、热启动和冷启动（Hot/Cold Observable)"></a>四、热启动和冷启动（Hot/Cold Observable)</h4><p>冷启动（cold Observable）是指工序的完成不需要额外时间，可以以任何速率、在任何时刻提供数据，例如网络请求、数据库查询、提取文件等。</p>
-<p>热启动（hot Observable）是指在它创建瞬间就开始工作的工序，并且以自己的速率释放数据，订阅它的下一步工序只能从它的中间时刻开始观察，捕捉到它释放的数据。例如鼠标键盘触发事件、系统事件等。</p>
-<p>冷启动的Observable是比较理想的能够通过reactive pull实现背压的例子，而热启动的Observable需要其他背压模型进行流量控制。</p>
-<h4 id="五、流量控制模型"><a href="#五、流量控制模型" class="headerlink" title="五、流量控制模型"></a>五、流量控制模型</h4><ul>
-<li>onBackpressureBuffer()：将上一步产生的数据缓存，在一下步需要的时候一次取出</li>
-<li>onBackpressureDrop()：取出源Observable释放的最近的数据提供给某一时刻请求数据的Observable</li>
-<li>onBackpressureBlock()：取出的数据顺序和onBackpressureBuffer()相同，但是对上一步Observable有额外控制：除非下一步的Observable请求数据，否则将源Observable释放的数据屏蔽。请求数据将上一个Observable解除屏蔽，然后在上一个Observable释放第一个数据之后再次屏蔽数据。</li>
-</ul>
-<p>参考：<a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure" target="_blank" rel="external">Rxjava wiki homepage</a></p>
-
+        
       
 
       
@@ -259,7 +249,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Leetcode](www.leetcode.com)算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第59届每周算法竞赛。<br>
+        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第59届每周算法竞赛。<br>
         
       
 

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
   <title>Rxjava2 使用教程（2） | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？ 由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前">
+  <meta name="description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
 <meta name="keywords" content="Rxjava">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rxjava2 使用教程（2）">
 <meta property="og:url" content="http://www.philipli-blog.com/2017/11/24/Rxjava2-tutorial2/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？ 由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前">
-<meta property="og:updated_time" content="2017-11-25T19:32:43.775Z">
+<meta property="og:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
+<meta property="og:updated_time" content="2017-11-25T19:36:40.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rxjava2 使用教程（2）">
-<meta name="twitter:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？ 由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前">
+<meta name="twitter:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -179,6 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="三、背压-backpressure"><a href="#三、背压-backpressure" class="headerlink" title="三、背压(backpressure)"></a>三、背压(backpressure)</h4><p>背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？</p>
+<a id="more"></a>
 <p>由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前一步工序和后一步工序完成工作的速度。由于后一步工序需要前一步工序的产品作为输入，如果前一步工序完成的过程很慢，那不会产生问题，后一步工序只要等待即可；但是如果前一步工序完成很快，远远快于后一步工序的处理速度，后一步工序就会处理不过来。而Rxjava采用的是并行运算，所以背压相当于考虑了不用线程流量控制的问题。所谓“背”，就是通过后一步工序控制前一步工序的工作速度，保证每一步工序能够稳定运行。</p>
 <h4 id="四、热启动和冷启动（Hot-Cold-Observable"><a href="#四、热启动和冷启动（Hot-Cold-Observable" class="headerlink" title="四、热启动和冷启动（Hot/Cold Observable)"></a>四、热启动和冷启动（Hot/Cold Observable)</h4><p>冷启动（cold Observable）是指工序的完成不需要额外时间，可以以任何速率、在任何时刻提供数据，例如网络请求、数据库查询、提取文件等。</p>
 <p>热启动（hot Observable）是指在它创建瞬间就开始工作的工序，并且以自己的速率释放数据，订阅它的下一步工序只能从它的中间时刻开始观察，捕捉到它释放的数据。例如鼠标键盘触发事件、系统事件等。</p>
