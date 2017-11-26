@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Rxjava2 使用教程（2） | Blog</title>
+  <title>Archives | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
-<meta name="keywords" content="Rxjava">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Rxjava2 使用教程（2）">
-<meta property="og:url" content="http://www.philipli-blog.com/2017/11/24/Rxjava2-tutorial2/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog">
+<meta property="og:url" content="http://www.philipli-blog.com/archives/page/3/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
-<meta property="og:updated_time" content="2017-11-25T19:36:40.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rxjava2 使用教程（2）">
-<meta name="twitter:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
+<meta name="twitter:title" content="Blog">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -158,199 +153,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Rxjava2-tutorial2" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Rxjava2 使用教程（2）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/28/Leetcode每周竞赛系列-No-56/" class="archive-article-date">
+  	<time datetime="2017-10-29T04:15:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/28/Leetcode每周竞赛系列-No-56/">Leetcode每周算法竞赛系列-No.56</a>
     </h1>
   
 
-        
-        <a href="/2017/11/24/Rxjava2-tutorial2/" class="archive-article-date">
-  	<time datetime="2017-11-25T05:49:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="三、背压-backpressure"><a href="#三、背压-backpressure" class="headerlink" title="三、背压(backpressure)"></a>三、背压(backpressure)</h4><p>背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？</p>
-<a id="more"></a>
-<p>由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前一步工序和后一步工序完成工作的速度。由于后一步工序需要前一步工序的产品作为输入，如果前一步工序完成的过程很慢，那不会产生问题，后一步工序只要等待即可；但是如果前一步工序完成很快，远远快于后一步工序的处理速度，后一步工序就会处理不过来。而Rxjava采用的是并行运算，所以背压相当于考虑了不用线程流量控制的问题。所谓“背”，就是通过后一步工序控制前一步工序的工作速度，保证每一步工序能够稳定运行。</p>
-<h4 id="四、热启动和冷启动（Hot-Cold-Observable"><a href="#四、热启动和冷启动（Hot-Cold-Observable" class="headerlink" title="四、热启动和冷启动（Hot/Cold Observable)"></a>四、热启动和冷启动（Hot/Cold Observable)</h4><p>冷启动（cold Observable）是指工序的完成不需要额外时间，可以以任何速率、在任何时刻提供数据，例如网络请求、数据库查询、提取文件等。</p>
-<p>热启动（hot Observable）是指在它创建瞬间就开始工作的工序，并且以自己的速率释放数据，订阅它的下一步工序只能从它的中间时刻开始观察，捕捉到它释放的数据。例如鼠标键盘触发事件、系统事件等。</p>
-<p>冷启动的Observable是比较理想的能够通过reactive pull实现背压的例子，而热启动的Observable需要其他背压模型进行流量控制。</p>
-<h4 id="五、流量控制模型"><a href="#五、流量控制模型" class="headerlink" title="五、流量控制模型"></a>五、流量控制模型</h4><ul>
-<li>onBackpressureBuffer()：将上一步产生的数据缓存，在一下步需要的时候一次取出</li>
-<li>onBackpressureDrop()：取出源Observable释放的最近的数据提供给某一时刻请求数据的Observable</li>
-<li>onBackpressureBlock()：取出的数据顺序和onBackpressureBuffer()相同，但是对上一步Observable有额外控制：除非下一步的Observable请求数据，否则将源Observable释放的数据屏蔽。请求数据将上一个Observable解除屏蔽，然后在上一个Observable释放第一个数据之后再次屏蔽数据。</li>
-</ul>
-<p>参考：<a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure" target="_blank" rel="external">Rxjava wiki homepage</a></p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/24/Rxjava2-tutorial2/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/11/26/Leetcode-60-0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode-60
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/11/24/leetcode-60/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode每周竞赛系列-No-59</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#三、背压-backpressure"><span class="toc-number">1.</span> <span class="toc-text">三、背压(backpressure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、热启动和冷启动（Hot-Cold-Observable"><span class="toc-number">2.</span> <span class="toc-text">四、热启动和冷启动（Hot/Cold Observable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、流量控制模型"><span class="toc-number">3.</span> <span class="toc-text">五、流量控制模型</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -374,8 +222,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

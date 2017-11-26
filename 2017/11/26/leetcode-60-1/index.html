@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Rxjava2 使用教程（2） | Blog</title>
+  <title>Leetcode每周竞赛系列-No-60 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
-<meta name="keywords" content="Rxjava">
+  <meta name="description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rxjava2 使用教程（2）">
-<meta property="og:url" content="http://www.philipli-blog.com/2017/11/24/Rxjava2-tutorial2/index.html">
+<meta property="og:title" content="Leetcode每周竞赛系列-No-60">
+<meta property="og:url" content="http://www.philipli-blog.com/2017/11/26/leetcode-60-1/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
-<meta property="og:updated_time" content="2017-11-25T19:36:40.685Z">
+<meta property="og:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
+<meta property="og:updated_time" content="2017-11-26T21:38:32.532Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rxjava2 使用教程（2）">
-<meta name="twitter:description" content="三、背压(backpressure)背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？">
+<meta name="twitter:title" content="Leetcode每周竞赛系列-No-60">
+<meta name="twitter:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -158,39 +157,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Rxjava2-tutorial2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode-60-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Rxjava2 使用教程（2）
+      Leetcode每周竞赛系列-No-60
     </h1>
   
 
         
-        <a href="/2017/11/24/Rxjava2-tutorial2/" class="archive-article-date">
-  	<time datetime="2017-11-25T05:49:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
+        <a href="/2017/11/26/leetcode-60-1/" class="archive-article-date">
+  	<time datetime="2017-11-26T21:24:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="三、背压-backpressure"><a href="#三、背压-backpressure" class="headerlink" title="三、背压(backpressure)"></a>三、背压(backpressure)</h4><p>背压（backpressure）是Rxjava2中重点体现出来的，为了区分程序是否支持背压，Rxjava2将原来Rxjava1中普遍支持背压的Observable对象取消，转而设置了支持背压的Flowable和不支持背压的Observable。那么，什么是背压呢？</p>
-<a id="more"></a>
-<p>由于Rxjava的工作模型是线性的工厂流水线式，程序获取原始数据一步步加工最终返回，所以要考虑到前一步工序和后一步工序完成工作的速度。由于后一步工序需要前一步工序的产品作为输入，如果前一步工序完成的过程很慢，那不会产生问题，后一步工序只要等待即可；但是如果前一步工序完成很快，远远快于后一步工序的处理速度，后一步工序就会处理不过来。而Rxjava采用的是并行运算，所以背压相当于考虑了不用线程流量控制的问题。所谓“背”，就是通过后一步工序控制前一步工序的工作速度，保证每一步工序能够稳定运行。</p>
-<h4 id="四、热启动和冷启动（Hot-Cold-Observable"><a href="#四、热启动和冷启动（Hot-Cold-Observable" class="headerlink" title="四、热启动和冷启动（Hot/Cold Observable)"></a>四、热启动和冷启动（Hot/Cold Observable)</h4><p>冷启动（cold Observable）是指工序的完成不需要额外时间，可以以任何速率、在任何时刻提供数据，例如网络请求、数据库查询、提取文件等。</p>
-<p>热启动（hot Observable）是指在它创建瞬间就开始工作的工序，并且以自己的速率释放数据，订阅它的下一步工序只能从它的中间时刻开始观察，捕捉到它释放的数据。例如鼠标键盘触发事件、系统事件等。</p>
-<p>冷启动的Observable是比较理想的能够通过reactive pull实现背压的例子，而热启动的Observable需要其他背压模型进行流量控制。</p>
-<h4 id="五、流量控制模型"><a href="#五、流量控制模型" class="headerlink" title="五、流量控制模型"></a>五、流量控制模型</h4><ul>
-<li>onBackpressureBuffer()：将上一步产生的数据缓存，在一下步需要的时候一次取出</li>
-<li>onBackpressureDrop()：取出源Observable释放的最近的数据提供给某一时刻请求数据的Observable</li>
-<li>onBackpressureBlock()：取出的数据顺序和onBackpressureBuffer()相同，但是对上一步Observable有额外控制：除非下一步的Observable请求数据，否则将源Observable释放的数据屏蔽。请求数据将上一个Observable解除屏蔽，然后在上一个Observable释放第一个数据之后再次屏蔽数据。</li>
-</ul>
-<p>参考：<a href="https://github.com/ReactiveX/RxJava/wiki/Backpressure" target="_blank" rel="external">Rxjava wiki homepage</a></p>
-
+        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。<br><a id="more"></a></p>
+<p>P4 <a href="https://discuss.leetcode.com/category/1624/parse-lisp-expression" target="_blank" rel="external">Parse Lisp Expression </a></p>
+<p>（题目的英文要求详见标题链接，这里只做简要中文说明）</p>
+<p>题目要求：写一个命令行计算器，提供加、乘和赋值命令，变量为数字或英文字符串，并需要提供括号命令，计算器优先计算括号内的结果，字符串变量对应值的有效区间为该赋值命令的括号内，并且在下一级括号内允许重复赋值覆盖原始值。</p>
+<p>格式：（add e1 e2) 、（mult e1 e2）、（let v1 e1 v2 e2 … vn en expression)</p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Input: (add 1 2)</div><div class="line">Output: 3</div><div class="line"></div><div class="line">Input: (mult 3 (add 2 3))</div><div class="line">Output: 15</div><div class="line"></div><div class="line">Input: (let x 2 (mult x 5))</div><div class="line">Output: 10</div><div class="line"></div><div class="line">Input: (let x 2 (mult x (let x 3 y 4 (add x y))))</div><div class="line">Output: 14</div><div class="line">Explanation: In the expression (add x y), when checking for the value of the variable x,</div><div class="line">we check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.</div><div class="line">Since x = 3 is found first, the value of x is 3.</div><div class="line"></div><div class="line">Input: (let x 3 x 2 x)</div><div class="line">Output: 2</div><div class="line">Explanation: Assignment in let statements is processed sequentially.</div><div class="line"></div><div class="line">Input: (let x 1 y 2 x (add x y) (add x y))</div><div class="line">Output: 5</div><div class="line">Explanation: The first (add x y) evaluates as 3, and is assigned to x.</div><div class="line">The second (add x y) evaluates as 3+2 = 5.</div><div class="line"></div><div class="line">Input: (let x 2 (add (let x 3 (let x 4 x)) x))</div><div class="line">Output: 6</div><div class="line">Explanation: Even though (let x 4 x) has a deeper scope, it is outside the context</div><div class="line">of the final x in the add-expression.  That final x will equal 2.</div><div class="line"></div><div class="line">Input: (let a1 3 b2 (add a1 1) b2) </div><div class="line">Output 4</div><div class="line">Explanation: Variable names can contain digits after the first character.</div></pre></td></tr></table></figure>
+<p>解答：大致思路是在一个递归函数中记录一个map存放赋值变量，然后逐级计算，题目要求比较复杂需要好好理解。</p>
+<p>范例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    String nextStr = <span class="string">""</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(String exp)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> eval(exp.substring(<span class="number">1</span>, exp.length() - <span class="number">1</span>), <span class="keyword">new</span> HashMap&lt;&gt;());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">eval</span><span class="params">(String exp, Map&lt;String, Integer&gt; upperMap)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> len = exp.length() - <span class="number">1</span>;</div><div class="line">        Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        map.putAll(upperMap);</div><div class="line">        </div><div class="line">        pos = readNext(exp, pos);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(nextStr.equals(<span class="string">"add"</span>))&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="comment">// we have to consider if nextStr a number, a variable or a expression</span></div><div class="line">            <span class="keyword">int</span> left = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> right = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> left + right;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nextStr.equals(<span class="string">"mult"</span>))&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> left = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> right = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> left * right;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="comment">// read the next Str one time, if there pos doesn't reach len, it means we are still in the process of assignment. Since if pos &lt; len, we still have the next str (of nextStr) to match with nextStr</span></div><div class="line">            <span class="keyword">while</span>(pos &lt; len)&#123;</div><div class="line">                String var = nextStr;</div><div class="line">                </div><div class="line">                pos = readNext(exp, pos);</div><div class="line">                <span class="keyword">int</span> val = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">                </div><div class="line">                map.put(var, val);</div><div class="line">                pos = readNext(exp, pos);</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// read the next expression/variable/value</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">readNext</span><span class="params">(String exp, <span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> len = exp.length();</div><div class="line">        <span class="keyword">int</span> tmp = pos;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="comment">// deal with expression</span></div><div class="line">        <span class="keyword">if</span>(exp.charAt(pos) == <span class="string">'('</span>)&#123;</div><div class="line">            pos++; cnt++;</div><div class="line">            <span class="keyword">for</span>(; pos &lt; len; pos++)&#123;</div><div class="line">                <span class="keyword">char</span> ch = exp.charAt(pos);</div><div class="line">                <span class="keyword">if</span>(cnt == <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(ch == <span class="string">'('</span>)&#123;</div><div class="line">                    cnt++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(ch == <span class="string">')'</span>)&#123;</div><div class="line">                    cnt--;</div><div class="line">                &#125;  </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// deal with variable or value</span></div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">for</span>(; pos &lt; len; pos++)&#123;</div><div class="line">                <span class="keyword">char</span> ch = exp.charAt(pos);</div><div class="line">                <span class="keyword">if</span>(ch == <span class="string">' '</span> || ch == <span class="string">')'</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;    </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        nextStr = exp.substring(tmp, pos);</div><div class="line">        <span class="keyword">return</span> pos + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -219,17 +215,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Rxjava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -280,7 +265,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/24/Rxjava2-tutorial2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/26/leetcode-60-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +279,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/26/Leetcode-60-0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode-60
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/24/leetcode-60/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode每周竞赛系列-No-59</div>
+    <a href="/2017/11/26/Leetcode-60-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode-60</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -332,7 +308,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#三、背压-backpressure"><span class="toc-number">1.</span> <span class="toc-text">三、背压(backpressure)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、热启动和冷启动（Hot-Cold-Observable"><span class="toc-number">2.</span> <span class="toc-text">四、热启动和冷启动（Hot/Cold Observable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、流量控制模型"><span class="toc-number">3.</span> <span class="toc-text">五、流量控制模型</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
