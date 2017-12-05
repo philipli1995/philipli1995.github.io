@@ -6,18 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.philipli-blog.com">
-  <title>Leetcode每周竞赛系列-No-60 | Blog</title>
+  <title>Archives: 2017/12 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode每周竞赛系列-No-60">
-<meta property="og:url" content="http://www.philipli-blog.com/2017/11/26/leetcode-60-1/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog">
+<meta property="og:url" content="http://www.philipli-blog.com/archives/2017/12/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
-<meta property="og:updated_time" content="2017-11-26T21:38:32.532Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode每周竞赛系列-No-60">
-<meta name="twitter:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。">
+<meta name="twitter:title" content="Blog">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -157,186 +153,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode-60-1" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Leetcode每周竞赛系列-No-60
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/05/leetcode-61/" class="archive-article-date">
+  	<time datetime="2017-12-05T17:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/05/leetcode-61/">Leetcode每周竞赛系列-No-61</a>
     </h1>
   
 
-        
-        <a href="/2017/11/26/leetcode-60-1/" class="archive-article-date">
-  	<time datetime="2017-11-26T21:24:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第60届每周算法竞赛。<br><a id="more"></a></p>
-<p>P4 <a href="https://discuss.leetcode.com/category/1624/parse-lisp-expression" target="_blank" rel="external">Parse Lisp Expression </a></p>
-<p>（题目的英文要求详见标题链接，这里只做简要中文说明）</p>
-<p>题目要求：写一个命令行计算器，提供加、乘和赋值命令，变量为数字或英文字符串，并需要提供括号命令，计算器优先计算括号内的结果，字符串变量对应值的有效区间为该赋值命令的括号内，并且在下一级括号内允许重复赋值覆盖原始值。</p>
-<p>格式：（add e1 e2) 、（mult e1 e2）、（let v1 e1 v2 e2 … vn en expression)</p>
-<p>例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Input: (add 1 2)</div><div class="line">Output: 3</div><div class="line"></div><div class="line">Input: (mult 3 (add 2 3))</div><div class="line">Output: 15</div><div class="line"></div><div class="line">Input: (let x 2 (mult x 5))</div><div class="line">Output: 10</div><div class="line"></div><div class="line">Input: (let x 2 (mult x (let x 3 y 4 (add x y))))</div><div class="line">Output: 14</div><div class="line">Explanation: In the expression (add x y), when checking for the value of the variable x,</div><div class="line">we check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.</div><div class="line">Since x = 3 is found first, the value of x is 3.</div><div class="line"></div><div class="line">Input: (let x 3 x 2 x)</div><div class="line">Output: 2</div><div class="line">Explanation: Assignment in let statements is processed sequentially.</div><div class="line"></div><div class="line">Input: (let x 1 y 2 x (add x y) (add x y))</div><div class="line">Output: 5</div><div class="line">Explanation: The first (add x y) evaluates as 3, and is assigned to x.</div><div class="line">The second (add x y) evaluates as 3+2 = 5.</div><div class="line"></div><div class="line">Input: (let x 2 (add (let x 3 (let x 4 x)) x))</div><div class="line">Output: 6</div><div class="line">Explanation: Even though (let x 4 x) has a deeper scope, it is outside the context</div><div class="line">of the final x in the add-expression.  That final x will equal 2.</div><div class="line"></div><div class="line">Input: (let a1 3 b2 (add a1 1) b2) </div><div class="line">Output 4</div><div class="line">Explanation: Variable names can contain digits after the first character.</div></pre></td></tr></table></figure>
-<p>解答：大致思路是在一个递归函数中记录一个map存放赋值变量，然后逐级计算，题目要求比较复杂需要好好理解。</p>
-<p>范例代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    String nextStr = <span class="string">""</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">evaluate</span><span class="params">(String exp)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> eval(exp.substring(<span class="number">1</span>, exp.length() - <span class="number">1</span>), <span class="keyword">new</span> HashMap&lt;&gt;());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">eval</span><span class="params">(String exp, Map&lt;String, Integer&gt; upperMap)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> len = exp.length() - <span class="number">1</span>;</div><div class="line">        Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        map.putAll(upperMap);</div><div class="line">        </div><div class="line">        pos = readNext(exp, pos);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(nextStr.equals(<span class="string">"add"</span>))&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="comment">// we have to consider if nextStr a number, a variable or a expression</span></div><div class="line">            <span class="keyword">int</span> left = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> right = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> left + right;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nextStr.equals(<span class="string">"mult"</span>))&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> left = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="keyword">int</span> right = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> left * right;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            </div><div class="line">            pos = readNext(exp, pos);</div><div class="line">            <span class="comment">// read the next Str one time, if there pos doesn't reach len, it means we are still in the process of assignment. Since if pos &lt; len, we still have the next str (of nextStr) to match with nextStr</span></div><div class="line">            <span class="keyword">while</span>(pos &lt; len)&#123;</div><div class="line">                String var = nextStr;</div><div class="line">                </div><div class="line">                pos = readNext(exp, pos);</div><div class="line">                <span class="keyword">int</span> val = nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">                </div><div class="line">                map.put(var, val);</div><div class="line">                pos = readNext(exp, pos);</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> nextStr.indexOf(<span class="string">"("</span>) == -<span class="number">1</span> ? map.containsKey(nextStr) ? map.get(nextStr) : Integer.parseInt(nextStr) : eval(nextStr.substring(<span class="number">1</span>, nextStr.length() - <span class="number">1</span>), map);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// read the next expression/variable/value</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">readNext</span><span class="params">(String exp, <span class="keyword">int</span> pos)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> len = exp.length();</div><div class="line">        <span class="keyword">int</span> tmp = pos;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="comment">// deal with expression</span></div><div class="line">        <span class="keyword">if</span>(exp.charAt(pos) == <span class="string">'('</span>)&#123;</div><div class="line">            pos++; cnt++;</div><div class="line">            <span class="keyword">for</span>(; pos &lt; len; pos++)&#123;</div><div class="line">                <span class="keyword">char</span> ch = exp.charAt(pos);</div><div class="line">                <span class="keyword">if</span>(cnt == <span class="number">0</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(ch == <span class="string">'('</span>)&#123;</div><div class="line">                    cnt++;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(ch == <span class="string">')'</span>)&#123;</div><div class="line">                    cnt--;</div><div class="line">                &#125;  </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// deal with variable or value</span></div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">for</span>(; pos &lt; len; pos++)&#123;</div><div class="line">                <span class="keyword">char</span> ch = exp.charAt(pos);</div><div class="line">                <span class="keyword">if</span>(ch == <span class="string">' '</span> || ch == <span class="string">')'</span>)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;    </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        nextStr = exp.substring(tmp, pos);</div><div class="line">        <span class="keyword">return</span> pos + <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
+        <div class="article-info info-on-right">
+          
+          
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.philipli-blog.com/2017/11/26/leetcode-60-1/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/05/leetcode-61/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode每周竞赛系列-No-61
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/11/26/Leetcode-60-0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode-60</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    目录，不存在的…
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -359,8 +218,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
