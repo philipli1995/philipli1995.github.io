@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2023 | Philip Li&#39;s Blog</title>
+  <title>Android笔记：使用SparseArray进行优化 | Philip Li&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Philip Li&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+  <meta name="description" content="由于Android开发对内存敏感，通常在Java语言中被使用的HashMap数据结构在Android开发体系中被更适合Android环境、内存性能更好的SparseArray代替。在开发使用的过程中如果遇到能够使用SparseArrayd的情况应该尽量使用SparseArray。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android笔记：使用SparseArray进行优化">
+<meta property="og:url" content="http://example.com/2017/11/12/SparseArray-Tutorial/index.html">
 <meta property="og:site_name" content="Philip Li&#39;s Blog">
+<meta property="og:description" content="由于Android开发对内存敏感，通常在Java语言中被使用的HashMap数据结构在Android开发体系中被更适合Android环境、内存性能更好的SparseArray代替。在开发使用的过程中如果遇到能够使用SparseArrayd的情况应该尽量使用SparseArray。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-12T13:30:03.000Z">
+<meta property="article:modified_time" content="2018-02-01T06:29:51.000Z">
 <meta property="article:author" content="Philip Li">
 <meta name="twitter:card" content="summary">
   
@@ -69,77 +73,80 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/12/kafka-stable/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-03-12T13:14:07.000Z" itemprop="datePublished">Mar 12</time>
+        <section id="main"><article id="post-SparseArray-Tutorial" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/12/SparseArray-Tutorial/" class="article-date">
+  <time class="dt-published" datetime="2017-11-12T13:30:03.000Z" itemprop="datePublished">2017-11-12</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/12/kafka-stable/">如何提升kafka运行稳定性</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Android笔记：使用SparseArray进行优化
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/12/Jenkins-monitor/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-03-12T13:13:59.000Z" itemprop="datePublished">Mar 12</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/12/Jenkins-monitor/">如何监控jenkins</a>
-    </h1>
-  
+        <p>由于Android开发对内存敏感，通常在Java语言中被使用的HashMap数据结构在Android开发体系中被更适合Android环境、内存性能更好的SparseArray代替。在开发使用的过程中如果遇到能够使用SparseArrayd的情况应该尽量使用SparseArray。</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2023/03/12/jenkins-intro/" class="archive-article-date">
-  <time class="dt-published" datetime="2023-03-12T13:13:47.000Z" itemprop="datePublished">Mar 12</time>
-</a>
+
+
+<p>###HashMap</p>
+<p>HashMap默认使用了一个容量为16的数组来存储数据结构，每一个数组单元是一个Entry，在元素的Hashcode相同的情况下HashMap会采用拉链法，将后续的Entry接在之前存在的Entry后面形成一个链表。</p>
+<p>HashMap在元素个数达到：<code>数据量&gt;初始容量*加载因子</code>时会进行扩容，扩容之后的容量一定是原容量的两倍。</p>
+<p>由于HashMap的扩容机制对Android内存空间很大的消耗，在一些情况下可以使用SparseArray。</p>
+<p>###SparseArray</p>
+<p>SparseArray使用的条件限制是Key值必须是int类型。它采用两个数组分别存储Key值和Value值，元素在数组内部有序排列，在查找元素是采用二分查找，同时额外提供<code>keyAt(int index)</code>和<code>valueAt(int index)</code>函数获得对应的key&#x2F;value。</p>
+<p>另外，SparseArray省去了HashMap在key值为int时封装成Integer的过程，减少了内存消耗。</p>
+<p>在满足以下条件是可以采用SparseArray代替HashMap：</p>
+<ul>
+<li>数据量较小，在千级以内</li>
+<li>key为int类型，或为long类型（使用LongSparseArray代替）</li>
+</ul>
+<p>###ArrayMap</p>
+<p>在key值为其他类型时，也可以采用与SparseArray数据结构相似的ArrayMap。不同之处在于ArrayMap的Key值可以是任意类型，内部采用两个个的数组，一个记录key的hash值，另一个记录value值。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/12/jenkins-intro/">Jenkins 简介</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/12/SparseArray-Tutorial/" data-id="clf5fow5q000jzsui6wab9r4h" data-title="Android笔记：使用SparseArray进行优化" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/12/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-58/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Leetcode每周竞赛系列-No-58
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/12/test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leetcode每周竞赛系列-No-58</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

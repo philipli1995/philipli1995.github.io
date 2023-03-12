@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Leetcode每周算法竞赛系列-No.56 | Philip Li&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第56届每周算法竞赛。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode每周算法竞赛系列-No.56">
+<meta property="og:url" content="http://example.com/2017/10/28/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-56/index.html">
+<meta property="og:site_name" content="Philip Li&#39;s Blog">
+<meta property="og:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第56届每周算法竞赛。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-28T13:15:19.000Z">
+<meta property="article:modified_time" content="2018-02-01T06:29:51.000Z">
+<meta property="article:author" content="Philip Li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Philip Li's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Philip Li&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Leetcode每周竞赛系列-No-56" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/10/28/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-56/" class="article-date">
+  <time class="dt-published" datetime="2017-10-28T13:15:19.000Z" itemprop="datePublished">2017-10-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Leetcode每周算法竞赛系列-No.56
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第56届每周算法竞赛。</p>
+<span id="more"></span>
+
+<h4 id="P3-Maximum-Length-of-Repeated-Subarray"><a href="#P3-Maximum-Length-of-Repeated-Subarray" class="headerlink" title="P3 Maximum Length of Repeated Subarray"></a>P3 <a target="_blank" rel="noopener" href="https://leetcode.com/contest/leetcode-weekly-contest-56/problems/maximum-length-of-repeated-subarray">Maximum Length of Repeated Subarray</a></h4><p>Given two integer arrays <code>A</code> and <code>B</code>, return the maximum length of an subarray that appears in both arrays.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">A: [1,2,3,2,1]</span><br><span class="line">B: [3,2,1,4,7]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: </span><br><span class="line">The repeated subarray with maximum length is [3, 2, 1].</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<ol>
+<li>1 &lt;&#x3D; len(A), len(B) &lt;&#x3D; 1000</li>
+<li>0 &lt;&#x3D; A[i], B[i] &lt; 100</li>
+</ol>
+<p>解答：属于动态规划类常见题目，难度中等，但是选择方法不当很容易TLE。设dp[i]’[j] 为A数组前i个数和B数组前j个数的结果，dp[A.length]’[B.length]即为最终结果。</p>
+<p>参考代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findLength</span><span class="params">(<span class="type">int</span>[] A, <span class="type">int</span>[] B)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> A.length, m = B.length;</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n+<span class="number">1</span>][m+<span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">ret</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; n;i++)&#123;</span><br><span class="line">        	<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;j &lt; m;j++)&#123;</span><br><span class="line">        		<span class="keyword">if</span>(A[i] == B[j])&#123;</span><br><span class="line">        			dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</span><br><span class="line">        		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        			dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        		&#125;</span><br><span class="line">        		ret = Math.max(ret, dp[i+<span class="number">1</span>][j+<span class="number">1</span>]);</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="P4-Find-K-th-Smallest-Pair-Distance"><a href="#P4-Find-K-th-Smallest-Pair-Distance" class="headerlink" title="P4 Find K-th Smallest Pair Distance"></a>P4 <a target="_blank" rel="noopener" href="https://leetcode.com/contest/leetcode-weekly-contest-56/problems/find-k-th-smallest-pair-distance">Find K-th Smallest Pair Distance</a></h4><p>Given an integer array, return the k-th smallest <strong>distance</strong> among all the pairs. The distance of a pair (A, B) is defined as the absolute difference between A and B.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">nums = [1,3,1]</span><br><span class="line">k = 1</span><br><span class="line">Output: 0 </span><br><span class="line">Explanation:</span><br><span class="line">Here are all the pairs:</span><br><span class="line">(1,3) -&gt; 2</span><br><span class="line">(1,1) -&gt; 0</span><br><span class="line">(3,1) -&gt; 2</span><br><span class="line">Then the 1st smallest distance pair is (1,1), and its distance is 0.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>2 &lt;= len(nums) &lt;= 10000</code>.</li>
+<li><code>0 &lt;= nums[i] &lt; 1000000</code>.</li>
+<li><code>1 &lt;= k &lt;= len(nums) * (len(nums) - 1) / 2</code>.</li>
+</ol>
+<p>解答：实际上是考察二分法，需要对算法实际运行次数有所掌握，不是对所有距离进行排序而是将所有点排序然后对各个点的距离进行二分搜索，以此来减少实际的时间复杂度。</p>
+<p>参考代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// Returns number of pairs with absolute difference less than or equal to mid.</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">countPairs</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> mid)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> a.length, res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i;</span><br><span class="line">            <span class="keyword">while</span> (j &lt; n &amp;&amp; a[j] - a[i] &lt;= mid) j++;</span><br><span class="line">            res += j - i - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">smallestDistancePair</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> a.length;</span><br><span class="line">        Arrays.sort(a);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Minimum absolute difference</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> a[<span class="number">1</span>] - a[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">            low = Math.min(low, a[i + <span class="number">1</span>] - a[i]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Maximum absolute difference</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">high</span> <span class="operator">=</span> a[n - <span class="number">1</span>] - a[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Do binary search for k-th absolute difference</span></span><br><span class="line">        <span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> low + (high - low) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (countPairs(a, mid) &lt; k)</span><br><span class="line">                low = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                high = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/10/28/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-56/" data-id="clf5fow5b0005zsui8sjh8ojo" data-title="Leetcode每周算法竞赛系列-No.56" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/05/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-57/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Leetcode每周竞赛系列-No-57
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/18/Hexo%20Introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo Intro</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CICD/" rel="tag">CICD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CICD/" style="font-size: 20px;">CICD</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jenkins/" style="font-size: 20px;">Jenkins</a> <a href="/tags/Rxjava/" style="font-size: 20px;">Rxjava</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/12/kafka-stable/">如何提升kafka运行稳定性</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/Jenkins-monitor/">如何监控jenkins</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/jenkins-intro/">Jenkins 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/28/understand-REST/">正确理解REST架构</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-61/">Leetcode每周竞赛系列-No-61</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Philip Li<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

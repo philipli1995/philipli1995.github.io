@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>如何监控jenkins | Philip Li&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="如何监控jenkins监控jenkins是为了了解jenkins的运行状态、性能、资源使用情况等，以及及时发现和处理可能出现的问题或者故障。有多种方法可以监控jenkins，例如： 使用 Monitoring 插件Monitoring 插件（monitoring）使用 JavaMelody，对 Jenkins 进行监控。12 安装好插件后，可以在 Manage Jenkins 菜单下找到 Moni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何监控jenkins">
+<meta property="og:url" content="http://example.com/2023/03/12/Jenkins-monitor/index.html">
+<meta property="og:site_name" content="Philip Li&#39;s Blog">
+<meta property="og:description" content="如何监控jenkins监控jenkins是为了了解jenkins的运行状态、性能、资源使用情况等，以及及时发现和处理可能出现的问题或者故障。有多种方法可以监控jenkins，例如： 使用 Monitoring 插件Monitoring 插件（monitoring）使用 JavaMelody，对 Jenkins 进行监控。12 安装好插件后，可以在 Manage Jenkins 菜单下找到 Moni">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-12T13:13:59.000Z">
+<meta property="article:modified_time" content="2023-03-12T13:29:22.781Z">
+<meta property="article:author" content="Philip Li">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="CICD">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Philip Li's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Philip Li&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Jenkins-monitor" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/12/Jenkins-monitor/" class="article-date">
+  <time class="dt-published" datetime="2023-03-12T13:13:59.000Z" itemprop="datePublished">2023-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      如何监控jenkins
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="如何监控jenkins"><a href="#如何监控jenkins" class="headerlink" title="如何监控jenkins"></a>如何监控jenkins</h2><p>监控jenkins是为了了解jenkins的运行状态、性能、资源使用情况等，以及及时发现和处理可能出现的问题或者故障。有多种方法可以监控jenkins，例如：</p>
+<h2 id="使用-Monitoring-插件"><a href="#使用-Monitoring-插件" class="headerlink" title="使用 Monitoring 插件"></a>使用 Monitoring 插件</h2><p>Monitoring 插件（monitoring）使用 JavaMelody，对 Jenkins 进行监控。12 安装好插件后，可以在 Manage Jenkins 菜单下找到 Monitoring of Jenkins master 菜单项，单击菜单项进入后，显示 Monitoring 仪表盘，可以查看以下信息：</p>
+<p>内存、CPU、HTTP 响应时间、当前请求数等<br>系统负载、线程数、打开的文件描述符等<br>已安装的插件、JVM 参数、环境变量等<br>构建历史、构建时长、构建错误等<br>该插件提供了丰富的监控维度，但是没有告警功能。</p>
+<span id="more"></span>
+<h2 id="使用-Prometheus-监控"><a href="#使用-Prometheus-监控" class="headerlink" title="使用 Prometheus 监控"></a>使用 Prometheus 监控</h2><p>Prometheus 是一款开源的监控、告警系统。3 Prometheus 实现了与 Zabbix 或者 Open-Falcon 类似的功能，但更强大。Prometheus 采用的是 pull 模式收集指标数据的，即 Prometheus 的服务器端主动从客户端拉取指标数据。这个客户端被称为 exporter。</p>
+<p>我们需要在 Jenkins 上安装 Prometheus 插件（prometheus），目的就是为了暴露一个接口（exporter），这样 Prometheus 就可以拉取到指标数据了。3</p>
+<p>安装好插件后，需要进行配置，“系统管理”——&gt;“系统设置”页面。通过此配置，我们可以选择暴露接口的 URL，以及暴露哪些指标数据。</p>
+<p>然后，在 Prometheus 的配置文件中添加对 Jenkins 的数据采集：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scrape_configs:</span><br><span class="line">  - job_name: &#x27;jenkins&#x27;</span><br><span class="line">    metrics_path: &quot;/prometheus/&quot;</span><br><span class="line">    scheme: http</span><br><span class="line">    bearer_token: &lt;bearer_token&gt;</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [&#x27;&lt;jenkins_ip&gt;:&lt;jenkins_port&gt;&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>metrics_path 是 Jenkins 暴露给 Prometheus 的路径。 static_configs 数组的值是 Jenkins 的 ip 地址：端口。</p>
+<p>配置完成后重新加载配置文件，并且在 Prometheus 中检查指标是否被采集。</p>
+<p>最后，在 Grafana 中配置图表进行展示，导入模板，这里导入的模板 id 是 9964 ，就可以看到 Jenkins 的各种指标数据了，并且可以设置告警规则和通知方式。</p>
+<h2 id="使用-Zabbix-监控"><a href="#使用-Zabbix-监控" class="headerlink" title="使用 Zabbix 监控"></a>使用 Zabbix 监控</h2><p>Zabbix 是一款开源的分布式监控系统。1 Zabbix 采用的是 push 模式收集指标数据的，即 Zabbix 的客户端主动向服务器端发送指标数据。</p>
+<p>要使用 Zabbix 监控 Jenkins ，需要在 Jenkins 上安装 Metrics 插件（metrics），使 Jenkins 暴露 metrics api 。1</p>
+<p>然后，在 Zabbix server 和 agent 上进行相应的配置以实现监控和告警。具体步骤如下：</p>
+<ul>
+<li>在 Zabbix server 上创建一个名为 jenkins-master 的主机，并添加一个名为 jenkins-master-template 的模板。</li>
+<li>在模板中创建一个名为 jenkins-master-application 的应用程序，并添加以下项目：<ul>
+<li>jenkins.master.healthcheck：检查 Jenkins 主节点健康状况V</li>
+<li>jenkins.master.version：获取 Jenkins 版本号</li>
+<li>jenkins.master.plugins.count：获取已安装插件数量</li>
+<li>jenkins.master.plugins.updates.count：获取可更新插件数量</li>
+</ul>
+</li>
+<li>在每个项目中设置类型为 Zabbix agent，键值为 jenkins.metrics [&lt;参数&gt;]，例如：jenkins.metrics [gauges.jenkins.node.count.value.value]，表示获取 Jenkins 节点个数。</li>
+<li>在每个项目中设置数据类型、更新间隔、历史记录保留时间等参数。</li>
+<li>在模板中创建触发器（trigger），设置告警条件和消息通知方式。</li>
+<li>在 Zabbix agent 所在机器上放置一个 Python 脚本（jenkins.metrics.py），用于从 Jenkins 的 metrics api 获取指标数据，并解析成 Zabbix 可识别的格式。</li>
+<li>在 Zabbix agent 的配置文件中添加用户自定义参数（UserParameter），将键值与脚本对应起来，例如：UserParameter&#x3D;jenkins.metrics [*], python &#x2F;usr&#x2F;lib&#x2F;zabbix&#x2F;externalscripts&#x2F;jenkins.metrics.py</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/12/Jenkins-monitor/" data-id="clf5fow5a0004zsuibrj2cxj5" data-title="如何监控jenkins" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CICD/" rel="tag">CICD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/12/kafka-stable/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何提升kafka运行稳定性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/12/jenkins-intro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jenkins 简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CICD/" rel="tag">CICD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CICD/" style="font-size: 20px;">CICD</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jenkins/" style="font-size: 20px;">Jenkins</a> <a href="/tags/Rxjava/" style="font-size: 20px;">Rxjava</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/12/kafka-stable/">如何提升kafka运行稳定性</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/Jenkins-monitor/">如何监控jenkins</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/jenkins-intro/">Jenkins 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/28/understand-REST/">正确理解REST架构</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-61/">Leetcode每周竞赛系列-No-61</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Philip Li<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

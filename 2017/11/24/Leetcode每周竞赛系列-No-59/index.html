@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Leetcode每周竞赛系列-No-59 | Philip Li&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第59届每周算法竞赛。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode每周竞赛系列-No-59">
+<meta property="og:url" content="http://example.com/2017/11/24/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-59/index.html">
+<meta property="og:site_name" content="Philip Li&#39;s Blog">
+<meta property="og:description" content="Leetcode算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第59届每周算法竞赛。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-24T11:52:02.000Z">
+<meta property="article:modified_time" content="2018-02-01T06:29:51.000Z">
+<meta property="article:author" content="Philip Li">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Philip Li's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Philip Li&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Leetcode每周竞赛系列-No-59" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/11/24/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-59/" class="article-date">
+  <time class="dt-published" datetime="2017-11-24T11:52:02.000Z" itemprop="datePublished">2017-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Leetcode每周竞赛系列-No-59
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a href="www.leetcode.com">Leetcode</a>算法竞赛于每周六晚6:30举行，旨在帮助参赛者巩固基本算法能力和Coding能力，参赛者需要在90分钟内完成4道常见面试算法题目，本文从中选取有价值的题目进行解答。本届为第59届每周算法竞赛。</p>
+<span id="more"></span>
+
+<p>P4 <a target="_blank" rel="noopener" href="https://leetcode.com/contest/weekly-contest-59/problems/my-calendar-ii">My Calendar II</a></p>
+<p>Implement a <code>MyCalendarTwo</code> class to store your events. A new event can be added if adding the event will not cause a <strong>triple</strong> booking.</p>
+<p>Your class will have one method, <code>book(int start, int end)</code>. Formally, this represents a booking on the half open interval <code>[start, end)</code>, the range of real numbers <code>x</code> such that <code>start &lt;= x &lt; end</code>.</p>
+<p>A <em>triple booking</em> happens when <strong>three</strong> events have some non-empty intersection (ie., there is some time that is common to all 3 events.)</p>
+<p>For each call to the method <code>MyCalendar.book</code>, return <code>true</code> if the event can be added to the calendar successfully without causing a <strong>triple</strong> booking. Otherwise, return <code>false</code> and do not add the event to the calendar.</p>
+<p>Your class will be called like this: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyCalendar cal = new MyCalendar(); </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyCalendar.book(start, end)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">MyCalendar();</span><br><span class="line">MyCalendar.book(10, 20); // returns true</span><br><span class="line">MyCalendar.book(50, 60); // returns true</span><br><span class="line">MyCalendar.book(10, 40); // returns true</span><br><span class="line">MyCalendar.book(5, 15); // returns false</span><br><span class="line">MyCalendar.book(5, 10); // returns true</span><br><span class="line">MyCalendar.book(25, 55); // returns true</span><br><span class="line">Explanation: </span><br><span class="line">The first two events can be booked.  The third event can be double booked.</span><br><span class="line">The fourth event (5, 15) can&#x27;t be booked, because it would result in a triple booking.</span><br><span class="line">The fifth event (5, 10) can be booked, as it does not use time 10 which is already double booked.</span><br><span class="line">The sixth event (25, 55) can be booked, as the time in [25, 40) will be double booked with the third event;</span><br><span class="line">the time [40, 50) will be single booked, and the time [50, 55) will be double booked with the second event.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of calls to <code>MyCalendar.book</code> per test case will be at most <code>1000</code>.</li>
+<li>In calls to <code>MyCalendar.book(start, end)</code>, <code>start</code> and <code>end</code> are integers in the range <code>[0, 10^9]</code>.</li>
+</ul>
+<p>题目要求设计一个class，能够根据输入借书的时间段，返回该次借书请求是否有效。规定在一个时间段内最多只能借两本书。</p>
+<p>实现的方法不算难，需要在类中维持一个cache记录曾经借书的时间段（以及该时间段借书次数是一次或两次）。然后每输入一个新的时间段，如果新时间段可行，在把它和已有的时间段拆分，只要保证每次更新后cache中的时间段不重叠即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarTwo</span> &#123;</span><br><span class="line">    Map&lt;<span class="type">int</span>[], Boolean&gt; map;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyCalendarTwo</span><span class="params">()</span> &#123;</span><br><span class="line">        map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">book</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span> &#123;</span><br><span class="line">        List&lt;Map.Entry&lt;<span class="type">int</span>[], Boolean&gt;&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;<span class="type">int</span>[]&gt; list2 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        List&lt;<span class="type">int</span>[]&gt; list3 = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span>[] sample = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;start, end&#125;;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;<span class="type">int</span>[], Boolean&gt; e : map.entrySet()) &#123;</span><br><span class="line">            <span class="type">int</span>[] history = e.getKey();</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">b</span> <span class="operator">=</span> e.getValue();</span><br><span class="line">            <span class="type">int</span>[][] temp = find(history, sample);</span><br><span class="line">            <span class="keyword">if</span> (temp != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (b) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                list.add(e);</span><br><span class="line">                list2.add(temp[<span class="number">0</span>]);</span><br><span class="line">                list3.add(temp[<span class="number">1</span>]);</span><br><span class="line">                list3.add(temp[<span class="number">2</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (list.isEmpty()) &#123;</span><br><span class="line">        	map.put(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;start,end&#125;, <span class="literal">false</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;<span class="type">int</span>[], Boolean&gt; e : list) &#123;</span><br><span class="line">            map.remove(e.getKey());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] e : list2) &#123;</span><br><span class="line">            map.put(e, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] e : list3) &#123;</span><br><span class="line">            map.put(e, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[][] find(<span class="type">int</span>[] a1, <span class="type">int</span>[] a2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a1[<span class="number">0</span>] &gt;= a2[<span class="number">1</span>] || a1[<span class="number">1</span>] &lt;= a2[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[][]&#123;&#123;Math.max(a1[<span class="number">0</span>], a2[<span class="number">0</span>]), Math.min(a1[<span class="number">1</span>],a2[<span class="number">1</span>])&#125;, </span><br><span class="line">                         &#123;Math.min(a1[<span class="number">0</span>], a2[<span class="number">0</span>]), Math.max(a1[<span class="number">0</span>],a2[<span class="number">0</span>])&#125;,</span><br><span class="line">                         &#123;Math.min(a1[<span class="number">1</span>], a2[<span class="number">1</span>]), Math.max(a1[<span class="number">1</span>],a2[<span class="number">1</span>])&#125;</span><br><span class="line">                        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MyCalendarTwo object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MyCalendarTwo obj = new MyCalendarTwo();</span></span><br><span class="line"><span class="comment"> * boolean param_1 = obj.book(start,end);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="P3-Count-Different-Palindromic-Subsequences"><a href="#P3-Count-Different-Palindromic-Subsequences" class="headerlink" title="P3 Count Different Palindromic Subsequences"></a>P3 <a target="_blank" rel="noopener" href="https://leetcode.com/contest/weekly-contest-59/problems/count-different-palindromic-subsequences">Count Different Palindromic Subsequences</a></h4><p>Given a string S, find the number of different non-empty palindromic subsequences in S, and <strong>return that number modulo 10^9 + 7.</strong></p>
+<p>A subsequence of a string S is obtained by deleting 0 or more characters from S.</p>
+<p>A sequence is palindromic if it is equal to the sequence reversed.</p>
+<p>Two sequences <code>A_1, A_2, ...</code> and <code>B_1, B_2, ...</code> are different if there is some <code>i</code> for which <code>A_i != B_i</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">S = &#x27;bccb&#x27;</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: </span><br><span class="line">The 6 different non-empty palindromic subsequences are &#x27;b&#x27;, &#x27;c&#x27;, &#x27;bb&#x27;, &#x27;cc&#x27;, &#x27;bcb&#x27;, &#x27;bccb&#x27;.</span><br><span class="line">Note that &#x27;bcb&#x27; is counted only once, even though it occurs twice.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">S = &#x27;abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba&#x27;</span><br><span class="line">Output: 104860361</span><br><span class="line">Explanation: </span><br><span class="line">There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Note:</strong></p>
+<p>The length of <code>S</code> will be in the range <code>[1, 1000]</code>.</p>
+<p>Each character <code>S[i]</code> will be in the set <code>&#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;&#125;</code>.</p>
+<p>看似是回文，但是实际上不是在substring中寻找，而是任意取其中的字符组成回文，所以结果不是很好想，但是一般一定会用到dp来存储子数组中的结果用来计算更长字符串的结果，这里贴一个单纯用dp的方法，和一个使用TreeSet和dp的方法，前者更简洁但不好想，后者比较好理解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pure dp</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countPalindromicSubsequences</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[len][len];</span><br><span class="line">        <span class="type">char</span>[] chs = s.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">            dp[i][i] = <span class="number">1</span>;   <span class="comment">// Consider the test case &quot;a&quot;, &quot;b&quot; &quot;c&quot;...</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">distance</span> <span class="operator">=</span> <span class="number">1</span>; distance &lt; len; distance++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len - distance; i++)&#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + distance;</span><br><span class="line">                <span class="keyword">if</span>(chs[i] == chs[j])&#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">low</span> <span class="operator">=</span> i + <span class="number">1</span>;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">high</span> <span class="operator">=</span> j - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">              <span class="comment">/* Variable low and high here are used to get rid of the duplicate*/</span></span><br><span class="line"></span><br><span class="line">                    <span class="keyword">while</span>(low &lt;= high &amp;&amp; chs[low] != chs[j])&#123;</span><br><span class="line">                        low++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">while</span>(low &lt;= high &amp;&amp; chs[high] != chs[j])&#123;</span><br><span class="line">                        high--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(low &gt; high)&#123;</span><br><span class="line">                        <span class="comment">// consider the string from i to j is &quot;a...a&quot; &quot;a...a&quot;... where there is no character &#x27;a&#x27; inside the leftmost and rightmost &#x27;a&#x27;</span></span><br><span class="line">                       <span class="comment">/* eg:  &quot;aba&quot; while i = 0 and j = 2:  dp[1][1] = 1 records the palindrome&#123;&quot;b&quot;&#125;, </span></span><br><span class="line"><span class="comment">                         the reason why dp[i + 1][j  - 1] * 2 counted is that we count dp[i + 1][j - 1] one time as &#123;&quot;b&quot;&#125;, </span></span><br><span class="line"><span class="comment">                         and additional time as &#123;&quot;aba&quot;&#125;. The reason why 2 counted is that we also count &#123;&quot;a&quot;, &quot;aa&quot;&#125;. </span></span><br><span class="line"><span class="comment">                         So totally dp[i][j] record the palindrome: &#123;&quot;a&quot;, &quot;b&quot;, &quot;aa&quot;, &quot;aba&quot;&#125;. </span></span><br><span class="line"><span class="comment">                         */</span> </span><br><span class="line"></span><br><span class="line">                        dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> + <span class="number">2</span>;  </span><br><span class="line">                    &#125; </span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(low == high)&#123;</span><br><span class="line">                        <span class="comment">// consider the string from i to j is &quot;a...a...a&quot; where there is only one character &#x27;a&#x27; inside the leftmost and rightmost &#x27;a&#x27;</span></span><br><span class="line">                       <span class="comment">/* eg:  &quot;aaa&quot; while i = 0 and j = 2: the dp[i + 1][j - 1] records the palindrome &#123;&quot;a&quot;&#125;.  </span></span><br><span class="line"><span class="comment">                         the reason why dp[i + 1][j  - 1] * 2 counted is that we count dp[i + 1][j - 1] one time as &#123;&quot;a&quot;&#125;, </span></span><br><span class="line"><span class="comment">                         and additional time as &#123;&quot;aaa&quot;&#125;. the reason why 1 counted is that </span></span><br><span class="line"><span class="comment">                         we also count &#123;&quot;aa&quot;&#125; that the first &#x27;a&#x27; come from index i and the second come from index j. So totally dp[i][j] records &#123;&quot;a&quot;, &quot;aa&quot;, &quot;aaa&quot;&#125;</span></span><br><span class="line"><span class="comment">                        */</span></span><br><span class="line">                        dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> + <span class="number">1</span>;  </span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="comment">// consider the string from i to j is &quot;a...a...a... a&quot; where there are at least two character &#x27;a&#x27; close to leftmost and rightmost &#x27;a&#x27;</span></span><br><span class="line">                       <span class="comment">/* eg: &quot;aacaa&quot; while i = 0 and j = 4: the dp[i + 1][j - 1] records the palindrome &#123;&quot;a&quot;,  &quot;c&quot;, &quot;aa&quot;, &quot;aca&quot;&#125;. </span></span><br><span class="line"><span class="comment">                          the reason why dp[i + 1][j  - 1] * 2 counted is that we count dp[i + 1][j - 1] one time as &#123;&quot;a&quot;,  &quot;c&quot;, &quot;aa&quot;, &quot;aca&quot;&#125;, </span></span><br><span class="line"><span class="comment">                          and additional time as &#123;&quot;aaa&quot;,  &quot;aca&quot;, &quot;aaaa&quot;, &quot;aacaa&quot;&#125;.  Now there is duplicate :  &#123;&quot;aca&quot;&#125;, </span></span><br><span class="line"><span class="comment">                          which is removed by deduce dp[low + 1][high - 1]. So totally dp[i][j] record &#123;&quot;a&quot;,  &quot;c&quot;, &quot;aa&quot;, &quot;aca&quot;, &quot;aaa&quot;, &quot;aaaa&quot;, &quot;aacaa&quot;&#125;</span></span><br><span class="line"><span class="comment">                          */</span></span><br><span class="line">                        dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> - dp[low + <span class="number">1</span>][high - <span class="number">1</span>]; </span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">1</span>] + dp[i + <span class="number">1</span>][j] - dp[i + <span class="number">1</span>][j - <span class="number">1</span>];  <span class="comment">//s.charAt(i) != s.charAt(j)</span></span><br><span class="line">                &#125;</span><br><span class="line">                dp[i][j] = dp[i][j] &lt; <span class="number">0</span> ? dp[i][j] + <span class="number">1000000007</span> : dp[i][j] % <span class="number">1000000007</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][len - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp + TreeSet</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> div=<span class="number">1000000007</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countPalindromicSubsequences</span><span class="params">(String S)</span> &#123;    </span><br><span class="line">        TreeSet[] characters = <span class="keyword">new</span> <span class="title class_">TreeSet</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> S.length();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) characters[i] = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;Integer&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> S.charAt(i) - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            characters[c].add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[][] dp = <span class="keyword">new</span> <span class="title class_">Integer</span>[len+<span class="number">1</span>][len+<span class="number">1</span>];</span><br><span class="line">         <span class="keyword">return</span> memo(S,characters,dp, <span class="number">0</span>, len);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">memo</span><span class="params">(String S,TreeSet&lt;Integer&gt;[] characters,Integer[][] dp,<span class="type">int</span> start,<span class="type">int</span> end)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (start &gt;= end) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp[start][end]!=<span class="literal">null</span>) <span class="keyword">return</span> dp[start][end];</span><br><span class="line">       </span><br><span class="line">            <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">new_start</span> <span class="operator">=</span> characters[i].ceiling(start);</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">new_end</span> <span class="operator">=</span> characters[i].lower(end);</span><br><span class="line">              <span class="keyword">if</span> (new_start == <span class="literal">null</span> || new_start &gt;= end) <span class="keyword">continue</span>;</span><br><span class="line">                 ans++;</span><br><span class="line">                <span class="keyword">if</span> (new_start != new_end) ans++;</span><br><span class="line">                ans+= memo(S,characters,dp,new_start+<span class="number">1</span>,new_end);</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            dp[start][end] = (<span class="type">int</span>)(ans%div);</span><br><span class="line">            <span class="keyword">return</span> dp[start][end];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2017/11/24/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-59/" data-id="clf5fow5h000azsui4s76cqo4" data-title="Leetcode每周竞赛系列-No-59" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/24/Rxjava2-tutoria2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Rxjava2 使用教程（2）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/17/Rxjava2-tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Rxjava2 使用教程（1）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CICD/" rel="tag">CICD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rxjava/" rel="tag">Rxjava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CICD/" style="font-size: 20px;">CICD</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Jenkins/" style="font-size: 20px;">Jenkins</a> <a href="/tags/Rxjava/" style="font-size: 20px;">Rxjava</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/12/kafka-stable/">如何提升kafka运行稳定性</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/Jenkins-monitor/">如何监控jenkins</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/12/jenkins-intro/">Jenkins 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/28/understand-REST/">正确理解REST架构</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/Leetcode%E6%AF%8F%E5%91%A8%E7%AB%9E%E8%B5%9B%E7%B3%BB%E5%88%97-No-61/">Leetcode每周竞赛系列-No-61</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 Philip Li<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
